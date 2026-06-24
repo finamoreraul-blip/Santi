@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HookBank IA 🎵 - Tu co-piloto musical</title>
+<meta name="description" content="IA que te ayuda a componer frases, melodías y canciones completas">
+<style>
+  :root{
+    --bg:#050505;--card:#0d0d0d;--border:#1f1f1f;--text:#fff;--muted:#999;
+    --purple:#8B5CF6;--pink:#EC4899;--user:#1e40af;--green:#22c55e;--orange:#f59e0b
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;height:100vh;display:flex;flex-direction:column}
+
+  header{
+    padding:20px;border-bottom:1px solid var(--border);
+    display:flex;align-items:center;justify-content:space-between;
+    background:linear-gradient(180deg,#0d0d0d 0%,transparent 100%);backdrop-filter:blur(10px)
+  }
+  header h1{font-size:1.4rem;background:linear-gradient(90deg,var(--purple),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:800;letter-spacing:-0.5px}
+  header a{color:var(--green);text-decoration:none;font-size:0.9rem;font-weight:700;display:flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--green);border-radius:20px;transition:0.2s}
+  header a:hover{background:var(--green);color:#000;transform:scale(1.05)}
+
+.chat{flex:1;overflow-y:auto;padding:30px 15px;display:flex;flex-direction:column;gap:18px;background:radial-gradient(circle at 20% 80%,rgba(139,92,246,0.05) 0%,transparent 50%)}
+.msg{max-width:78%;padding:16px 18px;border-radius:18px;line-height:1.6;white-space:pre-wrap;animation:fadeIn 0.3s ease}
+ @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.msg.ai{background:var(--card);border:1px solid var(--border);align-self:flex-start;border-bottom-left-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.msg.user{background:linear-gradient(135deg,var(--user),#3b82f6);align-self:flex-end;border-bottom-right-radius:6px}
+.msg.label{font-size:0.75rem;color:var(--muted);margin-bottom:8px;font-weight:700;display:flex;align-items:center;gap:6px}
+
+.audio-player{margin-top:12px;background:#000;border-radius:12px;padding:12px;border:1px solid var(--border)}
+audio{width:100%;border-radius:8px;outline:none}
+
+.input-area{padding:18px;border-top:1px solid var(--border);background:var(--bg);backdrop-filter:blur(10px)}
+.input-wrap{display:flex;gap:10px;max-width:900px;margin:0 auto}
+ input{flex:1;background:var(--card);border:2px solid var(--border);border-radius:14px;padding:16px 18px;color:var(--text);font-size:1rem;transition:0.2s}
+ input:focus{outline:none;border-color:var(--purple);box-shadow:0 0 0 3px rgba(139,92,246,0.1)}
+ button{background:linear-gradient(90deg,var(--purple),var(--pink));border:none;border-radius:14px;padding:16px 24px;color:#fff;font-weight:800;cursor:pointer;transition:0.2s;font-size:1rem}
+ button:hover{transform:scale(1.05) translateY(-2px)}
+ button:disabled{opacity:0.4;cursor:not-allowed;transform:scale(1)}
+ .btn-generate{background:linear-gradient(90deg,var(--orange),#ef4444);margin-top:12px;width:100%;max-width:900px;margin:12px auto 0;display:flex;align-items:center;justify-content:center;gap:8px}
+
+.suggestions{display:flex;gap:10px;flex-wrap:wrap;margin:0 auto 14px;max-width:900px}
+.suggestion{padding:10px 16px;background:var(--card);border:1px solid var(--border);border-radius:25px;font-size:0.9rem;cursor:pointer;color:var(--muted);transition:0.2s;font-weight:500}
+.suggestion:hover{border-color:var(--purple);color:var(--text);transform:translateY(-2px)}
+
+.loader{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--purple);animation:blink 1.4s infinite}
+.loader:nth-child(2){animation-delay:0.2s}
+.loader:nth-child(3){animation-delay:0.4s}
+ @keyframes blink{0%,60%,100%{opacity:0.3}30%{opacity:1}}
+
+.whatsapp-btn{background:var(--green);margin-top:12px;width:100%;max-width:900px;margin:12px auto 0;display:flex;align-items:center;justify-content:center;gap:8px}
+.whatsapp-btn:hover{background:#16a34a}
+
+ footer{text-align:center;padding:20px;color:var(--muted);font-size:0.85rem;border-top:1px solid var(--border)}
+ .note{background:rgba(139,92,246,0.1);border:1px dashed var(--purple);border-radius:12px;padding:12px;margin-top:10px;font-size:0.85rem;color:var(--muted)}
+
+ @media(max-width:600px){.msg{max-width:88%}h1{font-size:1.2rem}.input-wrap{flex-direction:column}}
+</style>
+</head>
+<body>
+  <header>
+    <h1>🎵 HookBank IA</h1>
+    <a href="https://wa.me/5492983389710" target="_blank">💬 Santiago</a>
+  </header>
+
+  <div class="chat" id="chat">
+    <div class="msg ai">
+      <div class="label">🤖 HookBank IA</div>
+¡Hola compositor! 👋🔥 Soy tu co-piloto musical 24/7
+
+Puedo ayudarte con:
+🎤 Escribir frases y hooks que se queden en la cabeza
+🎼 Sugerir melodías y progresiones de acordes  
+📝 Estructurar tu tema: intro, verso, pre-coro, coro
+💡 Tirarte ideas cuando estás bloqueado
+🎵 Generar canciones con IA
+
+Probá escribiendo: "dame letra de trap sobre desamor"
+Cuando tengas la letra, tocá "🎵 Generar canción" y te la canto 👇
+    </div>
+  </div>
+
+  <div class="input-area">
+    <div class="suggestions">
+      <div class="suggestion" onclick="sendSuggestion('🎤 Dame letra de trap sobre desamor, 2 versos + coro')">🎤 Letra trap desamor</div>
+      <div class="suggestion" onclick="sendSuggestion('🎹 Progresión de acordes triste en La menor')">🎹 Acordes Am</div>
+      <div class="suggestion" onclick="sendSuggestion('🔥 Coro pegajoso estilo reggaeton 8 compases')">🔥 Coro reggaeton</div>
+      <div class="suggestion" onclick="sendSuggestion('🎵 Melodía para beat 140 BPM trap')">🎵 Melodía 140 BPM</div>
+    </div>
+    <div class="input-wrap">
+      <input id="input" type="text" placeholder="🎼 Escribí tu idea o pedime una letra..." autocomplete="off">
+      <button id="send">🚀 Enviar</button>
+    </div>
+    <button class="btn-generate" onclick="generateSong()" id="genBtn" style="display:none">
+      🎵 Generar canción con IA
+    </button>
+    <div class="note" id="note" style="display:none">
+      ⚠️ Esto es demo. Para audio real necesitás backend con Suno API. Te guío después.
+    </div>
+    <button class="whatsapp-btn" onclick="window.open('https://wa.me/5492983389710?text=Hola%20Santiago!%20👋%20Probando%20HookBank%20IA')">
+      💚 ¿Dudas? Hablame por WhatsApp
+    </button>
+  </div>
+
+  <footer>
+    Hecho con ❤️ en Tres Arroyos 🇦🇷 | +5492983389710 | Demo v1.0
+  </footer>
+
+<script>
+const chat = document.getElementById('chat');
+const input = document.getElementById('input');
+const sendBtn = document.getElementById('send');
+const genBtn = document.getElementById('genBtn');
+const note = document.getElementById('note');
+let lastLyrics = '';
+
+// Respuestas simuladas para demo sin backend
+const responses = {
+  'letra': `🎤 Acá tenés 2 versos + coro de trap sobre desamor:
+
+[Verso 1]
+Eran las 3am y seguías en línea
+Yo mirando el celu como un idiota
+Vos riéndote de otra, yo con la botella
+Prometiste amor, me dejaste las sobras
+
+[Coro]
+Y ahora dime bebé, ¿quién te va a querer así?
+Con mis defectos, mis demonios y mi frenesí
+Te di todo mi corazón, vos lo tiraste al piso
+Pero yo sigo en pie, aunque me duela el vicio
+
+Tocá "🎵 Generar canción" y te la canto con IA`,
+  
+  'acordes': `🎹 Progresión triste en La menor para reggaeton/trap:
+
+Am - F - C - G
+Am - F - E7 - Am
+
+BPM: 90-95
+Vibe: Melancólico, nocturno
+Podés usar piano + 808 grave
+
+¿Querés que te arme una melodía sobre estos acordes?`,
+  
+  'coro': `🔥 Coro pegajoso estilo reggaeton:
+
+Mami, no me dejes solo en esta noche fría
+Tus besos son mi droga, mi melancolía
+Si te vas, me muero, pero si te quedás
+Te juro que te amo hasta la eternidad
+
+8 compases, rima AABB
+Fácil de cantar y recordar 👌`,
+  
+  'melodía': `🎵 Melodía para trap 140 BPM:
+
+Do - Mi - Sol - Fa# - Mi - Re - Do
+Do - Mi - Sol - La - Sol - Fa# - Mi
+
+Escala: La menor
+Usá un lead tipo "plucky" o "bell"
+Drop en el coro con 808 subiendo
+
+¿Te la escribo en notas MIDI?`
+};
+
+function addMsg(text, role, audioUrl=null) {
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  const icon = role==='ai'? '🤖 HookBank IA' : '👤 Vos';
+  
+  let audioHTML = '';
+  if(audioUrl) {
+    audioHTML = `<div class="audio-player"><audio controls src="${audioUrl}"></audio></div>`;
+    genBtn.style.display = 'none';
+  }
+  
+  div.innerHTML = `<div class="label">${icon}</div>${text}${audioHTML}`;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function addLoader(text="Pensando...") {
+  const div = document.createElement('div');
+  div.id = 'loader';
+  div.className = 'msg ai';
+  div.innerHTML = `<div class="label">🤖 HookBank IA</div><span class="loader"></span><span class="loader"></span><span class="loader"></span> ${text}`;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function removeLoader() {
+  document.getElementById('loader')?.remove();
+}
+
+function getResponse(text) {
+  text = text.toLowerCase();
+  if(text.includes('letra')) return responses.letra;
+  if(text.includes('acorde')) return responses.acordes;
+  if(text.includes('coro')) return responses.coro;
+  if(text.includes('melodía') || text.includes('bpm')) return responses.melodía;
+  return `Dale, te ayudo con eso 🎵\n\nPedime:\n• "dame letra de [tema]"\n• "progresión de acordes [tono]"\n• "coro pegajoso estilo [género]"\n\nO tocá una sugerencia de arriba 👆`;
+}
+
+async function sendMsg() {
+  const text = input.value.trim();
+  if(!text) return;
+
+  addMsg(text, 'user');
+  input.value = '';
+  sendBtn.disabled = true;
+  addLoader();
+
+  // Simulación de delay de IA
+  setTimeout(() => {
+    removeLoader();
+    const reply = getResponse(text);
+    addMsg(reply, 'ai');
+    
+    // Si es letra, mostramos botón generar
+    if(text.toLowerCase().includes('letra') || reply.includes('Coro')) {
+      lastLyrics = reply;
+      genBtn.style.display = 'flex';
+      note.style.display = 'block';
+    }
+    sendBtn.disabled = false;
+  }, 1200);
+}
+
+async function generateSong() {
+  if(!lastLyrics) {
+    alert('Primero pedime una letra 🎤');
+    return;
+  }
+
+  genBtn.disabled = true;
+  addLoader('🎵 Generando canción con IA... simulando 40seg');
+
+  setTimeout(() => {
+    removeLoader();
+    // MP3 demo gratuito de prueba
+    const demoAudio = 'https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3';
+    addMsg('🎤 Listo! Demo de audio. Para canciones reales conectamos Suno API en el backend.', 'ai', demoAudio);
+    note.style.display = 'block';
+    genBtn.disabled = false;
+  }, 3000);
+}
+
+function sendSuggestion(text) {
+  input.value = text;
+  sendMsg();
+}
+
+sendBtn.onclick = sendMsg;
+input.onkeypress = e => { if(e.key==='Enter') sendMsg() };
+</script>
+</body>
+</html>
