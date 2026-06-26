@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ASI ES LA BIRRAA - Tres Arroyos</title>
+<title>ASI ES LA BIRRAA - Necochea</title>
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif}
 body {background:#0a0a0a; color:#fff; padding-bottom:90px}
@@ -102,7 +102,7 @@ h1 {font-size:22px; color:#25D366}
 <body>
 
 <div class="header">
-  <h1>ASI ES LA BIRRAA</h1>
+  <h1>ASI ES LA BIRRAA - Necochea</h1>
 </div>
 
 <div class="filtros">
@@ -213,7 +213,7 @@ h1 {font-size:22px; color:#25D366}
 
       <input type="text" id="pedido-nombre" placeholder="Tu nombre *" required>
       <input type="tel" id="pedido-tel" placeholder="Tu teléfono *" required>
-      <input type="text" id="pedido-direccion" placeholder="Dirección para envío *" required>
+      <input type="text" id="pedido-direccion" placeholder="Dirección para envío Necochea *" required>
       <textarea id="pedido-nota" placeholder="Aclaraciones: piso, timbre, etc" rows="3"></textarea>
       
       <div style="display:flex; gap:8px; margin-top:10px">
@@ -238,7 +238,7 @@ let carrito = [];
 let tipoEntrega = 'envio';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const guardado = localStorage.getItem('carritoBIRRAA');
+  const guardado = localStorage.getItem('carritoBIRRAA_NEC');
   if(guardado) {
     carrito = JSON.parse(guardado);
     actualizarContadorCarrito();
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function guardarCarrito() {
-  localStorage.setItem('carritoBIRRAA', JSON.stringify(carrito));
+  localStorage.setItem('carritoBIRRAA_NEC', JSON.stringify(carrito));
 }
 
 document.addEventListener('click', e => {
@@ -368,7 +368,7 @@ function enviarWhatsApp() {
   if(!nombre || !tel) return alert('Completá nombre y teléfono');
   if(tipoEntrega === 'envio' && !direccion) return alert('Completá la dirección');
   
-  let msg = `*NUEVO PEDIDO - ASI ES LA BIRRAA*%0A%0A`;
+  let msg = `*NUEVO PEDIDO - ASI ES LA BIRRAA NECOCHEA*%0A%0A`;
   
   if(pedidoActual.tipo === 'carrito') {
     msg += `*CARRITO*%0A*Modalidad: ${tipoEntrega === 'envio' ? 'ENVÍO' : 'RETIRO'}*%0A%0A`;
