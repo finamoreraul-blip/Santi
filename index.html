@@ -1,377 +1,442 @@
 <!DOCTYPE html>
-<html lang="es-AR">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ASI ES LA BIRRA | Promos Tres Arroyos</title>
-  <meta name="description" content="Todas las promos de bebidas, kiosco y más en Tres Arroyos. ASI ES LA BIRRA">
-  <style>
-    :root{
-      --bg: #0f0f10;
-      --card: #1a1a1c;
-      --text: #f5f5f5;
-      --muted: #a3a3a3;
-      --accent: #FFD60A; /* Amarillo Promos-3A */
-      --accent-dark: #e6c200;
-      --radius: 16px;
-    }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-      padding-bottom: 80px; /* espacio carrito */
-    }
-    header{
-      background: linear-gradient(180deg, #000, var(--bg));
-      padding: 24px 16px;
-      border-bottom: 1px solid #222;
-      position: sticky; top:0; z-index:10;
-    }
-    .wrap{max-width:1000px;margin:0 auto;padding:0 16px}
-    .brand{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-    }
-    .brand-left{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:42px;height:42px;border-radius:12px;
-      background: var(--accent); display:grid;place-items:center;
-      font-weight: 900; color:#000; font-size:20px;
-    }
-    h1{font-size:22px;letter-spacing:.2px}
-    .sub{color:var(--muted);font-size:14px;margin-top:4px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASI ES LA BIRRA - Tres Arroyos</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif}
+body {background:#0a0a0a; color:#fff}
+header {background:#1a1a1a; padding:15px; text-align:center; position:sticky; top:0; z-index:100}
 
-    .cart-btn{
-      position:relative;background:var(--card);border:1px solid #2a2a2d;
-      color:var(--text);padding:10px 14px;border-radius:12px;font-weight:700;
-      cursor:pointer;font-size:14px;
-    }
-    .cart-count{
-      position:absolute;top:-6px;right:-6px;background:var(--accent);color:#000;
-      font-size:11px;font-weight:900;border-radius:999px;width:20px;height:20px;
-      display:grid;place-items:center;
-    }
+h1 {font-size:22px; color:#25D366}
 
-    nav{
-      display:flex;gap:8px;overflow-x:auto;padding:12px 0 0;
-      scrollbar-width: none;
-    }
-    nav::-webkit-scrollbar{display:none}
-    nav a{
-      flex:0 0 auto;
-      padding:8px 14px;border:1px solid #2a2a2d;
-      border-radius:999px;text-decoration:none;color:var(--text);
-      font-size:14px;background: var(--card);
-      transition:.2s;
-    }
-    nav a:hover, nav a.active{border-color:var(--accent);background:#222}
+.filtros {display:flex; gap:8px; padding:12px; overflow-x:auto; background:#151515; align-items:center}
+.filter-btn {padding:8px 14px; border:none; border-radius:20px; background:#2a2a2a; color:#fff; cursor:pointer; white-space:nowrap; font-size:14px}
+.filter-btn.active {background:#25D366; color:white}
 
-    main{padding:24px 0 60px}
-    section{margin-top:32px;scroll-margin-top:90px}
-    .section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-    .section-head h2{font-size:18px}
-    .grid{
-      display:grid;gap:12px;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    }
-    .card{
-      background: var(--card); border:1px solid #232326;
-      border-radius: var(--radius); padding:14px;
-      display:flex;flex-direction:column;gap:8px;
-    }
-    .tag{
-      font-size:11px;color:#000;background:var(--accent);
-      padding:4px 8px;border-radius:999px;font-weight:700;width:max-content;
-    }
-    .card h3{font-size:16px}
-    .price{font-weight:800;font-size:18px;color:var(--accent)}
-    .old{color:var(--muted);text-decoration:line-through;font-size:13px;margin-left:6px}
-    .muted{color:var(--muted);font-size:13px}
-    .btn-add{
-      margin-top:6px;display:inline-block;text-align:center;
-      padding:10px 12px;border-radius:12px;border:1px solid var(--accent);
-      background: transparent; color:var(--accent); font-weight:800; 
-      text-decoration:none; font-size:14px;cursor:pointer;
-      transition:.2s;
-    }
-    .btn-add:hover{background:var(--accent);color:#000}
-    
-    /* CARRITO */
-    .cart-drawer{
-      position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:50;
-      display:none;align-items:flex-end;justify-content:flex-end;
-    }
-    .cart-drawer.open{display:flex}
-    .cart-panel{
-      width:100%;max-width:420px;height:100%;background:var(--bg);
-      border-left:1px solid #222;padding:16px;display:flex;flex-direction:column;
-      transform:translateX(100%);transition:.3s;
-    }
-    .cart-drawer.open .cart-panel{transform:translateX(0)}
-    .cart-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-    .cart-items{flex:1;overflow:auto;display:flex;flex-direction:column;gap:10px}
-    .cart-item{
-      background:var(--card);border:1px solid #232326;border-radius:12px;
-      padding:10px;display:flex;gap:10px;align-items:center;
-    }
-    .cart-item h4{font-size:14px}
-    .qty{display:flex;gap:6px;align-items:center}
-    .qty button{
-      width:28px;height:28px;border-radius:8px;border:1px solid #333;
-      background:#111;color:var(--text);font-weight:800;cursor:pointer;
-    }
-    .cart-foot{border-top:1px solid #222;padding-top:12px;display:flex;flex-direction:column;gap:10px}
-    .total{display:flex;align-items:center;justify-content:space-between;font-weight:900;font-size:18px}
-    .btn-whatsapp{
-      background:var(--accent);color:#000;font-weight:900;border:0;
-      padding:14px;border-radius:12px;font-size:15px;cursor:pointer;
-    }
-    .close{cursor:pointer;border:1px solid #333;background:#111;color:var(--text);border-radius:10px;padding:8px 12px}
+#btn-carrito-filtros {margin-left:auto; background:#ff9800; color:#fff; padding:8px 14px; border:none; border-radius:20px; font-weight:bold; cursor:pointer; font-size:14px}
+#btn-carrito-filtros:hover {background:#e68900}
 
-    footer{
-      border-top:1px solid #222; color:var(--muted);
-      font-size:13px; text-align:center; padding:24px 16px;
-    }
-    .badge{
-      font-size:11px;border:1px dashed #333;border-radius:999px;
-      padding:4px 8px;color:var(--muted);
-    }
-  </style>
+.container {padding:12px; max-width:1200px; margin:auto}
+
+.grid-promos {display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; margin:12px 0}
+
+.promo-item {
+  border:1px solid #333; border-radius:8px; overflow:hidden; background:#2a2a2a; display:flex; flex-direction:column;
+}
+
+.promo-item img {width:100%; height:110px; object-fit:cover; display:block; background:#1a1a1a; cursor:pointer}
+
+.promo-nombre {
+  font-size:13px; font-weight:600; padding:6px 4px; color:#fff; text-align:center; min-height:32px;
+  display:flex; align-items:center; justify-content:center; line-height:1.2;
+}
+
+.promo-precio {
+  font-size:15px; font-weight:bold; color:#25D366; text-align:center; padding-bottom:4px;
+}
+
+.btn-group {display:flex; gap:4px; margin-top:auto}
+
+.btn-pedir {
+  flex:1; background:#25D366; color:white; border:none; padding:8px; font-size:12px; font-weight:bold; cursor:pointer; border-radius:0 0 0 8px;
+}
+
+.btn-carrito {
+  flex:1; background:#ff9800; color:white; border:none; padding:8px; font-size:12px; font-weight:bold; cursor:pointer; border-radius:0 0 8px 0;
+}
+
+.btn-pedir:hover {background:#1ebc57;}
+.btn-carrito:hover {background:#e68900;}
+.btn-carrito:active {transform:scale(0.95);}
+
+.modal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; align-items:center; justify-content:center}
+.modal-content {background:#1a1a1a; border-radius:15px; max-width:500px; width:90%; max-height:85vh; overflow-y:auto; border:1px solid #333}
+.modal-header {display:flex; gap:12px; padding:15px; border-bottom:1px solid #333; position:relative}
+.modal-header img {width:70px; height:70px; border-radius:10px; object-fit:cover}
+.modal-close {position:absolute; top:12px; right:16px; font-size:28px; cursor:pointer; color:#aaa}
+.modal-pedido {padding:20px; display:block}
+.modal-pedido h3 {color:#25D366; margin-bottom:15px}
+.modal-pedido input, .modal-pedido textarea {width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #333; background:#2a2a2a; color:#fff}
+.btn-whatsapp {background:#25D366; border:none; color:#000; padding:12px; border-radius:8px; width:100%; font-weight:bold; font-size:16px; cursor:pointer; margin-top:10px}
+
+#items-carrito-modal {max-height:250px; overflow-y:auto; margin:10px 0}
+#items-carrito-modal p {margin:8px 0; padding-bottom:8px; border-bottom:1px solid #333; font-size:14px}
+
+.btn-vaciar {background:#dc3545; border:none; color:white; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold; margin-bottom:10px}
+.btn-vaciar:hover {background:#c82333}
+
+.opcion-envio {display:flex; gap:10px; margin:15px 0; padding:12px; background:#2a2a2a; border-radius:8px}
+.opcion-envio label {flex:1; cursor:pointer; padding:10px; border:2px solid #444; border-radius:8px; text-align:center; transition:all 0.2s}
+.opcion-envio input[type="radio"] {display:none}
+.opcion-envio input[type="radio"]:checked + label {border-color:#25D366; background:#1a3d2a}
+
+/* LIGHTBOX */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 50px;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.9);
+}
+.lightbox img {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 85vh;
+  border-radius: 8px;
+}
+.lightbox .close {
+  position: absolute;
+  top: 20px; right: 40px;
+  color: #fff; font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.lightbox .close:hover { color: #ccc; }
+
+.seccion-titulo {font-size:18px; color:#25D366; margin:20px 0 8px 0; padding-left:4px}
+</style>
 </head>
 <body>
 
-  <header>
-    <div class="wrap">
-      <div class="brand">
-        <div class="brand-left">
-          <div class="logo">🍻</div>
-          <div>
-            <h1>ASI ES LA BIRRA</h1>
-            <div class="sub">Promos de bebidas, kiosco y más en Tres Arroyos</div>
-          </div>
-        </div>
-        <button class="cart-btn" id="openCart">Carrito <span class="cart-count" id="cartCount">0</span></button>
-      </div>
+<div class="header">
+  <h1>ASI ES LA BIRRA</h1>
+</div>
 
-      <nav>
-        <a href="#bebidas" class="active">Bebidas</a>
-        <a href="#kiosco">Kiosco</a>
-        <a href="#snacks">Snacks</a>
-        <a href="#combos">Combos</a>
-      </nav>
+<div class="filtros">
+  <button class="filter-btn active" onclick="filtrarCategoria('todos', this)">Todas</button>
+  <button class="filter-btn" onclick="filtrarCategoria('kiosco', this)">Kiosco</button>
+  <button class="filter-btn" onclick="filtrarCategoria('bebidas', this)">Bebidas</button>
+  <button class="filter-btn" onclick="filtrarCategoria('cigarrillos', this)">Cigarrillos</button>
+  <button class="filter-btn" onclick="filtrarCategoria('combos', this)">Combos</button>
+  
+  <button id="btn-carrito-filtros" onclick="abrirCarritoModal()">🛒 Carrito <span id="contador-carrito">(0)</span></button>
+</div>
+
+<div class="container">
+
+<!-- SECCION KIOSCO -->
+<div class="seccion-titulo" id="kiosco">🏪 Kiosco</div>
+<div class="grid-promos" data-categoria="kiosco">
+  <div class="promo-item">
+    <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=200&h=110&fit=crop">
+    <div class="promo-nombre">Golosinas Surtidas x10</div>
+    <div class="promo-precio">$1800</div>
+    <div class="btn-group">
+      <button class="btn-pedir" onclick="abrirPedido('Golosinas Surtidas x10',1800)">Pedir $1.800</button>
+      <button class="btn-carrito" data-promo="Golosinas Surtidas x10" data-precio="1800">+ Carrito</button>
     </div>
-  </header>
+  </div>
+</div>
 
-  <main class="wrap">
+<!-- SECCION BEBIDAS -->
+<div class="seccion-titulo" id="bebidas">🍺 Bebidas</div>
+<div class="grid-promos" data-categoria="bebidas">
+  <div class="promo-item">
+    <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?w=200&h=110&fit=crop">
+    <div class="promo-nombre">Cerveza Artesanal 1L</div>
+    <div class="promo-precio">$3800</div>
+    <div class="btn-group">
+      <button class="btn-pedir" onclick="abrirPedido('Cerveza Artesanal 1L',3800)">Pedir $3.800</button>
+      <button class="btn-carrito" data-promo="Cerveza Artesanal 1L" data-precio="3800">+ Carrito</button>
+    </div>
+  </div>
+</div>
 
-    <!-- SECCIÓN 1: BEBIDAS -->
-    <section id="bebidas">
-      <div class="section-head">
-        <h2>🍺 Bebidas</h2>
-        <span class="badge">Actualizado: 4 Sept 2026</span>
+<!-- SECCION CIGARRILLOS -->
+<div class="seccion-titulo" id="cigarrillos">🚬 Cigarrillos</div>
+<div class="grid-promos" data-categoria="cigarrillos">
+  <div class="promo-item">
+    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=200&h=110&fit=crop">
+    <div class="promo-nombre">Cigarrillos + Encendedor</div>
+    <div class="promo-precio">$1600</div>
+    <div class="btn-group">
+      <button class="btn-pedir" onclick="abrirPedido('Cigarrillos + Encendedor',1600)">Pedir $1.600</button>
+      <button class="btn-carrito" data-promo="Cigarrillos + Encendedor" data-precio="1600">+ Carrito</button>
+    </div>
+  </div>
+</div>
+
+<!-- SECCION COMBOS -->
+<div class="seccion-titulo" id="combos">🎯 Combos</div>
+<div class="grid-promos" data-categoria="combos">
+  <div class="promo-item">
+    <img src="https://images.unsplash.com/photo-1485809052867-1993bd6afa1f?w=200&h=110&fit=crop">
+    <div class="promo-nombre">Combo Previa: Birra + Snack</div>
+    <div class="promo-precio">$5500</div>
+    <div class="btn-group">
+      <button class="btn-pedir" onclick="abrirPedido('Combo Previa: Birra + Snack',5500)">Pedir $5.500</button>
+      <button class="btn-carrito" data-promo="Combo Previa: Birra + Snack" data-precio="5500">+ Carrito</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- MODAL CARRITO/PEDIDO -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <img id="modal-img" src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="">
+      <div style="flex:1">
+        <h3 id="modal-nombre">Tu Pedido</h3>
       </div>
-      <div class="grid">
-        
-        <div class="card" data-id="quilmes1l" data-name="Birra Quilmes 1L Retornable" data-price="3200">
-          <span class="tag">2x1</span>
-          <h3>Birra Quilmes 1L Retornable</h3>
-          <div><span class="price">$3200</span><span class="old">$6400</span></div>
-          <div class="muted">Lun a Jue. Solo efectivo.</div>
-          <button class="btn-add">Agregar</button>
+      <span class="modal-close" onclick="cerrarModal()">&times;</span>
+    </div>
+    
+    <div class="modal-pedido" id="modal-pedido">
+      <h3 id="titulo-modal">Confirmar Pedido 📱</h3>
+      <div id="resumen-pedido"></div>
+      
+      <div id="opcion-envio-container"></div>
+
+      <div style="margin:15px 0; padding:12px; background:#2a2a2a; border-radius:8px">
+        <p style="font-weight:bold; margin-bottom:8px; color:#25D366">Método de pago *</p>
+        <div class="opcion-envio">
+          <input type="radio" id="pago-efectivo" name="pago" value="Efectivo" checked>
+          <label for="pago-efectivo">💵 Efectivo<br><small>Contra entrega</small></label>
+          
+          <input type="radio" id="pago-transfer" name="pago" value="Transferencia">
+          <label for="pago-transfer">🏦 Transferencia<br><small>Te pasamos CBU</small></label>
+          
+          <input type="radio" id="pago-mp" name="pago" value="Mercado Pago">
+          <label for="pago-mp">📱 Mercado Pago<br><small>Te mandamos link</small></label>
         </div>
-
-        <div class="card" data-id="brahma6" data-name="6x Brahma Chopp 473cc" data-price="9800">
-          <span class="tag">PACK</span>
-          <h3>6x Brahma Chopp 473cc</h3>
-          <div><span class="price">$9800</span></div>
-          <div class="muted">Helada. Retiro en local.</div>
-          <button class="btn-add">Agregar</button>
-        </div>
-
-        <div class="card" data-id="fernet" data-name="Fernet Branca 750cc + Gaseosa 2.25L" data-price="12500">
-          <span class="tag">-30%</span>
-          <h3>Fernet Branca 750cc + Gaseosa 2.25L</h3>
-          <div><span class="price">$12500</span><span class="old">$17800</span></div>
-          <div class="muted">Viernes y Sábado.</div>
-          <button class="btn-add">Agregar</button>
-        </div>
-
       </div>
-    </section>
 
-    <!-- SECCIÓN 2: KIOSCO -->
-    <section id="kiosco">
-      <div class="section-head">
-        <h2>🏪 Kiosco</h2>
+      <div style="margin:15px 0; padding:12px; background:#2a2a2a; border-radius:8px">
+        <p style="font-size:18px; margin:10px 0; text-align:center">
+          <span id="texto-envio">Envío a domicilio: <b style="color:#25D366">$2.000</b></span><br>
+          Total: <b id="pedido-total" style="color:#25D366; font-size:22px"></b>
+        </p>
       </div>
-      <div class="grid">
-        
-        <div class="card" data-id="jorgito" data-name="2x Alfajor Jorgito Blanco" data-price="1500">
-          <span class="tag">2X$</span>
-          <h3>2x Alfajor Jorgito Blanco</h3>
-          <div><span class="price">$1500</span></div>
-          <div class="muted">Stock limitado diario.</div>
-          <button class="btn-add">Agregar</button>
-        </div>
 
-        <div class="card" data-id="combo-kiosco" data-name="Gaseosa 2.25L + Papas Lay's" data-price="3800">
-          <span class="tag">COMBO</span>
-          <h3>Gaseosa 2.25L + Papas Lay's</h3>
-          <div><span class="price">$3800</span></div>
-          <div class="muted">Marcas a elección.</div>
-          <button class="btn-add">Agregar</button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECCIÓN 3: SNACKS -->
-    <section id="snacks">
-      <div class="section-head">
-        <h2>🧂 Snacks</h2>
-      </div>
-      <div class="grid">
-        
-        <div class="card" data-id="palitos" data-name="3x Palitos Salados 120g" data-price="2200">
-          <span class="tag">PROMO</span>
-          <h3>3x Palitos Salados 120g</h3>
-          <div><span class="price">$2200</span></div>
-          <div class="muted">Mezclados como quieras.</div>
-          <button class="btn-add">Agregar</button>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SECCIÓN 4: COMBOS -->
-    <section id="combos">
-      <div class="section-head">
-        <h2>🎯 Combos</h2>
-      </div>
-      <div class="grid">
-        
-        <div class="card" data-id="previa" data-name="Combo Previa: 2x Birra + 2x Snack" data-price="8500">
-          <span class="tag">FIESTA</span>
-          <h3>Combo Previa: 2x Birra + 2x Snack</h3>
-          <div><span class="price">$8500</span><span class="old">$10500</span></div>
-          <div class="muted">Jue, Vie y Sáb después de las 20hs.</div>
-          <button class="btn-add">Agregar</button>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- CARRITO -->
-  <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-panel">
-      <div class="cart-head">
-        <h3>Tu Pedido</h3>
-        <button class="close" id="closeCart">Cerrar</button>
-      </div>
-      <div class="cart-items" id="cartItems"></div>
-      <div class="cart-foot">
-        <div class="total"><span>Total</span><span id="cartTotal">$0</span></div>
-        <button class="btn-whatsapp" id="sendWhatsApp">Enviar Pedido por WhatsApp</button>
+      <input type="text" id="pedido-nombre" placeholder="Tu nombre *" required>
+      <input type="tel" id="pedido-tel" placeholder="Tu teléfono *" required>
+      <input type="text" id="pedido-direccion" placeholder="Dirección para envío *" required>
+      <textarea id="pedido-nota" placeholder="Aclaraciones: piso, timbre, etc" rows="3"></textarea>
+      
+      <div style="display:flex; gap:8px; margin-top:10px">
+        <button onclick="cerrarModal()" style="flex:1; padding:12px; border:none; border-radius:8px; background:#444; color:#fff; cursor:pointer">Volver</button>
+        <button class="btn-whatsapp" onclick="enviarWhatsApp()">Enviar por WhatsApp</button>
       </div>
     </div>
   </div>
+</div>
 
-  <footer>
-    <div class="wrap">
-      ASI ES LA BIRRA © 2026 | Tres Arroyos, BA. WhatsApp: 2983-389710
-      <br>Para cargar tu promo escribinos por IG @asieslabirra
-    </div>
-  </footer>
-
-  <script>
-    const WA_NUMBER = '5492983389710'; // TU NUMERO
-    let cart = [];
-
-    const $ = s => document.querySelector(s);
-    const $$ = s => document.querySelectorAll(s);
-
-    function fmt(n){ return '$' + n.toLocaleString('es-AR'); }
-
-    function renderCart(){
-      const wrap = $('#cartItems');
-      wrap.innerHTML = '';
-      let total = 0;
-
-      cart.forEach(item=>{
-        total += item.price * item.qty;
-        const div = document.createElement('div');
-        div.className = 'cart-item';
-        div.innerHTML = `
-          <div style="flex:1">
-            <h4>${item.name}</h4>
-            <div class="muted">${fmt(item.price)} c/u</div>
-          </div>
-          <div class="qty">
-            <button onclick="changeQty('${item.id}', -1)">-</button>
-            <span>${item.qty}</span>
-            <button onclick="changeQty('${item.id}', 1)">+</button>
-          </div>
-        `;
-        wrap.appendChild(div);
-      });
-
-      $('#cartTotal').textContent = fmt(total);
-      $('#cartCount').textContent = cart.reduce((a,b)=>a+b.qty,0);
-    }
-
-    function addToCart(id,name,price){
-      const found = cart.find(i=>i.id===id);
-      if(found){ found.qty++; } else { cart.push({id,name,price,qty:1}); }
-      renderCart();
-      $('#cartDrawer').classList.add('open');
-    }
-
-    function changeQty(id,delta){
-      const item = cart.find(i=>i.id===id);
-      if(!item) return;
-      item.qty += delta;
-      if(item.qty<=0){ cart = cart.filter(i=>i.id!==id); }
-      renderCart();
-    }
-
-    $$('.btn-add').forEach(btn=>{
-      btn.addEventListener('click', e=>{
-        const card = e.target.closest('.card');
-        addToCart(card.dataset.id, card.dataset.name, parseInt(card.dataset.price));
-      });
-    });
-
-    $('#openCart').onclick = ()=>$('#cartDrawer').classList.add('open');
-    $('#closeCart').onclick = ()=>$('#cartDrawer').classList.remove('open');
-    $('#cartDrawer').onclick = e=>{ if(e.target.id==='cartDrawer') $('#cartDrawer').classList.remove('open'); }
-
-    $('#sendWhatsApp').onclick = ()=>{
-      if(cart.length===0){ alert('Agregá algo al carrito primero 🍻'); return; }
-      let msg = 'Hola ASI ES LA BIRRA! Quiero pedir:%0A%0A';
-      cart.forEach(i=>{
-        msg += `- ${i.qty}x ${i.name} = ${fmt(i.price*i.qty)}%0A`;
-      });
-      msg += `%0ATotal: ${$('#cartTotal').textContent}%0A%0ANombre: %0ADirección/Retiro: `;
-      window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
-    }
-
-    // Nav activo
-    const links = $$('nav a');
-    const sections = $$('section');
-    window.addEventListener('scroll', ()=>{
-      let current = '';
-      sections.forEach(sec=>{
-        if(window.scrollY >= sec.offsetTop - 100){ current = sec.id; }
-      });
-      links.forEach(a=>{
-        a.classList.remove('active');
-        if(a.getAttribute('href').includes(current)){ a.classList.add('active'); }
-      });
-    });
-  </script>
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+  <img id="lightbox-img">
+</div>
 
 </body>
+<script>
+const NUMERO = "5492983389710";
+let pedidoActual = {};
+let carrito = [];
+let tipoEntrega = 'envio';
+
+document.addEventListener('DOMContentLoaded', () => {
+  const guardado = localStorage.getItem('carritoASI');
+  if(guardado) {
+    carrito = JSON.parse(guardado);
+    actualizarContadorCarrito();
+  }
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.querySelector('.lightbox .close');
+
+  document.querySelectorAll('.promo-item img').forEach(img => {
+    img.onclick = (e) => {
+      e.stopPropagation();
+      lightbox.style.display = 'block';
+      lightboxImg.src = img.src;
+    }
+  });
+
+  closeBtn.onclick = () => lightbox.style.display = 'none';
+  lightbox.onclick = (e) => { if(e.target == lightbox) lightbox.style.display = 'none'; }
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lightbox.style.display = 'none'; });
+});
+
+function guardarCarrito() {
+  localStorage.setItem('carritoASI', JSON.stringify(carrito));
+}
+
+document.addEventListener('click', e => {
+  if(e.target.classList.contains('btn-carrito')) {
+    const item = {
+      promo: e.target.dataset.promo, 
+      precio: parseInt(e.target.dataset.precio)
+    };
+    carrito.push(item);
+    guardarCarrito();
+    actualizarContadorCarrito();
+    e.target.textContent = "✓ Agregado";
+    setTimeout(() => e.target.textContent = "+ Carrito", 1000);
+  }
+});
+
+function actualizarContadorCarrito() {
+  document.getElementById('contador-carrito').textContent = `(${carrito.length})`;
+}
+
+function vaciarCarrito() {
+  if(confirm('¿Seguro que querés vaciar el carrito?')) {
+    carrito = [];
+    guardarCarrito();
+    actualizarContadorCarrito();
+    cerrarModal();
+  }
+}
+
+function abrirCarritoModal() {
+  if(carrito.length === 0) {
+    alert("El carrito está vacío. Agregá promos desde los botones + Carrito");
+    return;
+  }
+  
+  tipoEntrega = 'envio';
+  pedidoActual = {tipo: 'carrito'};
+  document.getElementById('modal-nombre').textContent = 'Tu Carrito';
+  
+  document.getElementById('modal-pedido').style.display = 'block';
+  document.getElementById('titulo-modal').innerHTML = 'Confirmar Pedido del Carrito 🛒 <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>';
+  
+  const subtotal = carrito.reduce((a,b) => a + b.precio, 0);
+  const total = subtotal + 2000;
+  
+  let resumen = '<div id="items-carrito-modal">';
+  carrito.forEach(i => {
+    resumen += `<p><b>${i.promo}</b><br><small>$${i.precio.toLocaleString('es-AR')}</small></p>`;
+  });
+  resumen += `</div><p style="text-align:center; margin-top:10px">Subtotal: $${subtotal.toLocaleString('es-AR')}</p>`;
+  document.getElementById('resumen-pedido').innerHTML = resumen;
+  document.getElementById('texto-envio').innerHTML = 'Envío a domicilio: <b style="color:#25D366">$2.000</b>';
+  document.getElementById('opcion-envio-container').innerHTML = '';
+  document.getElementById('pedido-total').textContent = '$' + total.toLocaleString('es-AR');
+  
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function abrirPedido(producto, precio) {
+  tipoEntrega = 'envio';
+  pedidoActual = {tipo: 'individual', producto, precio};
+  document.getElementById('modal-nombre').textContent = 'Confirmar Pedido';
+  
+  document.getElementById('modal-pedido').style.display = 'block';
+  document.getElementById('titulo-modal').textContent = 'Confirmar Pedido 📱';
+  
+  let resumen = `<div style="display:flex; justify-content:space-between; margin:10px 0">
+    <b>${producto}</b>
+    <span style="color:#25D366; font-weight:bold">$${precio.toLocaleString('es-AR')}</span>
+  </div>`;
+  
+  const opcionesEnvio = `
+    <div class="opcion-envio">
+      <input type="radio" id="retiro" name="entrega" value="retiro" checked onchange="cambiarTipoEntrega('retiro', ${precio})">
+      <label for="retiro">🏪 Retirar<br><small>Sin costo</small></label>
+      
+      <input type="radio" id="envio" name="entrega" value="envio" onchange="cambiarTipoEntrega('envio', ${precio})">
+      <label for="envio">🚚 Envío<br><small>+ $2.000</small></label>
+    </div>
+  `;
+  
+  document.getElementById('resumen-pedido').innerHTML = resumen;
+  document.getElementById('opcion-envio-container').innerHTML = opcionesEnvio;
+  document.getElementById('texto-envio').innerHTML = 'Retiro en local: <b style="color:#25D366">GRATIS</b>';
+  document.getElementById('pedido-total').textContent = '$' + precio.toLocaleString('es-AR');
+  
+  document.getElementById('modal').style.display = 'flex';
+}
+
+function cambiarTipoEntrega(tipo, precio) {
+  tipoEntrega = tipo;
+  if(tipo === 'envio') {
+    document.getElementById('texto-envio').innerHTML = 'Envío a domicilio: <b style="color:#25D366">$2.000</b>';
+    document.getElementById('pedido-total').textContent = '$' + (precio + 2000).toLocaleString('es-AR');
+  } else {
+    document.getElementById('texto-envio').innerHTML = 'Retiro en local: <b style="color:#25D366">GRATIS</b>';
+    document.getElementById('pedido-total').textContent = '$' + precio.toLocaleString('es-AR');
+  }
+}
+
+function enviarWhatsApp() {
+  const nombre = document.getElementById('pedido-nombre').value;
+  const tel = document.getElementById('pedido-tel').value;
+  const direccion = document.getElementById('pedido-direccion').value;
+  const nota = document.getElementById('pedido-nota').value;
+  const metodoPago = document.querySelector('input[name="pago"]:checked').value;
+  
+  if(!nombre || !tel) {
+    alert('Completá nombre y teléfono. Son obligatorios');
+    return;
+  }
+  
+  if(tipoEntrega === 'envio' && !direccion) {
+    alert('Completá la dirección para el envío');
+    return;
+  }
+  
+  let msg = `*NUEVO PEDIDO - ASI ES LA BIRRA*%0A%0A`;
+  
+  if(pedidoActual.tipo === 'carrito') {
+    msg += `*Pedido desde CARRITO*%0A*Modalidad: ${tipoEntrega === 'envio' ? 'ENVÍO' : 'RETIRO'}*%0A%0A`;
+    carrito.forEach(i => msg += `• ${i.promo} $${i.precio.toLocaleString('es-AR')}%0A`);
+    const subtotal = carrito.reduce((a,b) => a + b.precio, 0);
+    const total = tipoEntrega === 'envio' ? subtotal + 2000 : subtotal;
+    if(tipoEntrega === 'envio') msg += `%0ASubtotal: $${subtotal.toLocaleString('es-AR')}%0AEnvío: $2.000%0A`;
+    msg += `*TOTAL: $${total.toLocaleString('es-AR')}*%0A%0A`;
+    msg += `*Nombre:* ${nombre}%0A*Tel:* ${tel}%0A*Dirección:* ${direccion}%0A*Nota:* ${nota}%0A*Pago:* ${metodoPago}`;
+    carrito = [];
+    guardarCarrito();
+    actualizarContadorCarrito();
+  } else {
+    const total = tipoEntrega === 'envio' ? pedidoActual.precio + 2000 : pedidoActual.precio;
+    msg += `*Promo:* ${pedidoActual.producto}%0A*Precio:* $${pedidoActual.precio.toLocaleString('es-AR')}%0A*Modalidad:* ${tipoEntrega === 'envio' ? 'ENVÍO' : 'RETIRO'}%0A`;
+    if(tipoEntrega === 'envio') msg += `Envío: $2.000%0A`;
+    msg += `*TOTAL: $${total.toLocaleString('es-AR')}*%0A%0A`;
+    msg += `*Nombre:* ${nombre}%0A*Tel:* ${tel}%0A*Dirección:* ${direccion}%0A*Nota:* ${nota}%0A*Pago:* ${metodoPago}`;
+  }
+  
+  window.open(`https://wa.me/${NUMERO}?text=${msg}`, '_blank');
+  cerrarModal();
+}
+
+function cerrarModal() {
+  document.getElementById('modal').style.display = 'none';
+  document.getElementById('pedido-nombre').value = '';
+  document.getElementById('pedido-tel').value = '';
+  document.getElementById('pedido-direccion').value = '';
+  document.getElementById('pedido-nota').value = '';
+  document.getElementById('opcion-envio-container').innerHTML = '';
+}
+
+function filtrarCategoria(categoria, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  
+  const secciones = document.querySelectorAll('.grid-promos');
+  const titulos = document.querySelectorAll('.seccion-titulo');
+  
+  if(categoria === 'todos') {
+    secciones.forEach(s => s.style.display = 'grid');
+    titulos.forEach(t => t.style.display = 'block');
+  } else {
+    secciones.forEach(s => {
+      s.style.display = s.dataset.categoria === categoria ? 'grid' : 'none';
+    });
+    titulos.forEach(t => {
+      t.style.display = t.id === categoria ? 'block' : 'none';
+    });
+  }
+}
+</script>
 </html>
