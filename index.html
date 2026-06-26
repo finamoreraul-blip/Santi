@@ -6,7 +6,7 @@
 <title>ASI ES LA BIRRA - Tres Arroyos</title>
 <style>
 * {margin:0; padding:0; box-sizing:border-box; font-family:Arial, sans-serif}
-body {background:#0a0a0a; color:#fff}
+body {background:#0a0a0a; color:#fff; padding-bottom:90px} /* espacio para carrito flotante */
 header {background:#1a1a1a; padding:15px; text-align:center; position:sticky; top:0; z-index:100}
 
 h1 {font-size:22px; color:#25D366}
@@ -15,46 +15,58 @@ h1 {font-size:22px; color:#25D366}
 .filter-btn {padding:8px 14px; border:none; border-radius:20px; background:#2a2a2a; color:#fff; cursor:pointer; white-space:nowrap; font-size:14px}
 .filter-btn.active {background:#25D366; color:white}
 
-#btn-carrito-filtros {margin-left:auto; background:#ff9800; color:#fff; padding:8px 14px; border:none; border-radius:20px; font-weight:bold; cursor:pointer; font-size:14px}
-#btn-carrito-filtros:hover {background:#e68900}
-
 .container {padding:12px; max-width:1200px; margin:auto}
 
-.grid-promos {display:grid; grid-template-columns:repeat(2, 1fr); gap:8px; margin:12px 0}
-
-.promo-item {
-  border:1px solid #333; border-radius:8px; overflow:hidden; background:#2a2a2a; display:flex; flex-direction:column;
+/* PROMOS MAS ANCHAS: 1 col mobile, 3 col desktop */
+.grid-promos {display:grid; grid-template-columns:1fr; gap:12px; margin:12px 0}
+@media(min-width:768px){
+  .grid-promos {grid-template-columns:repeat(3, 1fr)}
 }
 
-.promo-item img {width:100%; height:110px; object-fit:cover; display:block; background:#1a1a1a; cursor:pointer}
+.promo-item {
+  border:1px solid #333; border-radius:12px; overflow:hidden; background:#1a1a1a; display:flex; flex-direction:column;
+}
+
+.promo-item img {width:100%; height:160px; object-fit:cover; display:block; background:#1a1a1a; cursor:pointer}
 
 .promo-nombre {
-  font-size:13px; font-weight:600; padding:6px 4px; color:#fff; text-align:center; min-height:32px;
-  display:flex; align-items:center; justify-content:center; line-height:1.2;
+  font-size:15px; font-weight:600; padding:10px 12px 4px 12px; color:#fff; text-align:left; line-height:1.3;
 }
 
 .promo-precio {
-  font-size:15px; font-weight:bold; color:#25D366; text-align:center; padding-bottom:4px;
+  font-size:18px; font-weight:bold; color:#25D366; text-align:left; padding:0 12px 8px 12px;
 }
 
-.btn-group {display:flex; gap:4px; margin-top:auto}
+.btn-group {display:flex; gap:6px; padding:0 12px 12px 12px; margin-top:auto}
 
 .btn-pedir {
-  flex:1; background:#25D366; color:white; border:none; padding:8px; font-size:12px; font-weight:bold; cursor:pointer; border-radius:0 0 0 8px;
+  flex:1; background:#25D366; color:#000; border:none; padding:12px; font-size:14px; font-weight:bold; cursor:pointer; border-radius:8px;
 }
 
 .btn-carrito {
-  flex:1; background:#ff9800; color:white; border:none; padding:8px; font-size:12px; font-weight:bold; cursor:pointer; border-radius:0 0 8px 0;
+  flex:1; background:#ff9800; color:#000; border:none; padding:12px; font-size:14px; font-weight:bold; cursor:pointer; border-radius:8px;
 }
 
 .btn-pedir:hover {background:#1ebc57;}
 .btn-carrito:hover {background:#e68900;}
-.btn-carrito:active {transform:scale(0.95);}
+
+/* CARRITO FLOTANTE */
+.btn-carrito-float {
+  position:fixed; bottom:20px; right:20px; z-index:200;
+  background:#ff9800; color:#000; padding:16px 20px; border:none; border-radius:50px; 
+  font-weight:bold; cursor:pointer; font-size:15px;
+  box-shadow:0 4px 20px rgba(255,152,0,.4);
+  display:flex; align-items:center; gap:8px;
+}
+.btn-carrito-float:hover {background:#e68900; transform:scale(1.05)}
+.cart-count-badge {
+  background:#000; color:#ff9800; border-radius:50%; width:24px; height:24px; 
+  display:grid; place-items:center; font-size:12px; font-weight:900;
+}
 
 .modal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1000; align-items:center; justify-content:center}
 .modal-content {background:#1a1a1a; border-radius:15px; max-width:500px; width:90%; max-height:85vh; overflow-y:auto; border:1px solid #333}
 .modal-header {display:flex; gap:12px; padding:15px; border-bottom:1px solid #333; position:relative}
-.modal-header img {width:70px; height:70px; border-radius:10px; object-fit:cover}
 .modal-close {position:absolute; top:12px; right:16px; font-size:28px; cursor:pointer; color:#aaa}
 .modal-pedido {padding:20px; display:block}
 .modal-pedido h3 {color:#25D366; margin-bottom:15px}
@@ -65,41 +77,26 @@ h1 {font-size:22px; color:#25D366}
 #items-carrito-modal p {margin:8px 0; padding-bottom:8px; border-bottom:1px solid #333; font-size:14px}
 
 .btn-vaciar {background:#dc3545; border:none; color:white; padding:8px 12px; border-radius:6px; cursor:pointer; font-size:13px; font-weight:bold; margin-bottom:10px}
-.btn-vaciar:hover {background:#c82333}
 
 .opcion-envio {display:flex; gap:10px; margin:15px 0; padding:12px; background:#2a2a2a; border-radius:8px}
-.opcion-envio label {flex:1; cursor:pointer; padding:10px; border:2px solid #444; border-radius:8px; text-align:center; transition:all 0.2s}
+.opcion-envio label {flex:1; cursor:pointer; padding:10px; border:2px solid #444; border-radius:8px; text-align:center; transition:all 0.2s; font-size:13px}
 .opcion-envio input[type="radio"] {display:none}
 .opcion-envio input[type="radio"]:checked + label {border-color:#25D366; background:#1a3d2a}
 
 /* LIGHTBOX */
 .lightbox {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  padding-top: 50px;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  overflow: auto;
-  background: rgba(0,0,0,0.9);
+  display: none; position: fixed; z-index: 9999; padding-top: 50px;
+  left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background: rgba(0,0,0,0.9);
 }
 .lightbox img {
-  margin: auto;
-  display: block;
-  max-width: 90%;
-  max-height: 85vh;
-  border-radius: 8px;
+  margin: auto; display: block; max-width: 90%; max-height: 85vh; border-radius: 8px;
 }
 .lightbox .close {
-  position: absolute;
-  top: 20px; right: 40px;
-  color: #fff; font-size: 40px;
-  font-weight: bold;
-  cursor: pointer;
+  position: absolute; top: 20px; right: 40px; color: #fff; font-size: 40px;
+  font-weight: bold; cursor: pointer;
 }
-.lightbox .close:hover { color: #ccc; }
 
-.seccion-titulo {font-size:18px; color:#25D366; margin:20px 0 8px 0; padding-left:4px}
+.seccion-titulo {font-size:20px; color:#25D366; margin:24px 0 12px 0; padding-left:4px; font-weight:800}
 </style>
 </head>
 <body>
@@ -114,8 +111,6 @@ h1 {font-size:22px; color:#25D366}
   <button class="filter-btn" onclick="filtrarCategoria('bebidas', this)">Bebidas</button>
   <button class="filter-btn" onclick="filtrarCategoria('cigarrillos', this)">Cigarrillos</button>
   <button class="filter-btn" onclick="filtrarCategoria('combos', this)">Combos</button>
-  
-  <button id="btn-carrito-filtros" onclick="abrirCarritoModal()">🛒 Carrito <span id="contador-carrito">(0)</span></button>
 </div>
 
 <div class="container">
@@ -124,11 +119,11 @@ h1 {font-size:22px; color:#25D366}
 <div class="seccion-titulo" id="kiosco">🏪 Kiosco</div>
 <div class="grid-promos" data-categoria="kiosco">
   <div class="promo-item">
-    <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=200&h=110&fit=crop">
+    <img src="https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?w=400&h=160&fit=crop">
     <div class="promo-nombre">Golosinas Surtidas x10</div>
-    <div class="promo-precio">$1800</div>
+    <div class="promo-precio">$1.800</div>
     <div class="btn-group">
-      <button class="btn-pedir" onclick="abrirPedido('Golosinas Surtidas x10',1800)">Pedir $1.800</button>
+      <button class="btn-pedir" onclick="abrirPedido('Golosinas Surtidas x10',1800)">Pedir</button>
       <button class="btn-carrito" data-promo="Golosinas Surtidas x10" data-precio="1800">+ Carrito</button>
     </div>
   </div>
@@ -138,11 +133,11 @@ h1 {font-size:22px; color:#25D366}
 <div class="seccion-titulo" id="bebidas">🍺 Bebidas</div>
 <div class="grid-promos" data-categoria="bebidas">
   <div class="promo-item">
-    <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?w=200&h=110&fit=crop">
-    <div class="promo-nombre">Cerveza Artesanal 1L</div>
-    <div class="promo-precio">$3800</div>
+    <img src="https://images.unsplash.com/photo-1608270586620-248524c67de9?w=400&h=160&fit=crop">
+    <div class="promo-nombre">Cerveza Artesanal 1L Bien Fría</div>
+    <div class="promo-precio">$3.800</div>
     <div class="btn-group">
-      <button class="btn-pedir" onclick="abrirPedido('Cerveza Artesanal 1L',3800)">Pedir $3.800</button>
+      <button class="btn-pedir" onclick="abrirPedido('Cerveza Artesanal 1L',3800)">Pedir</button>
       <button class="btn-carrito" data-promo="Cerveza Artesanal 1L" data-precio="3800">+ Carrito</button>
     </div>
   </div>
@@ -152,11 +147,11 @@ h1 {font-size:22px; color:#25D366}
 <div class="seccion-titulo" id="cigarrillos">🚬 Cigarrillos</div>
 <div class="grid-promos" data-categoria="cigarrillos">
   <div class="promo-item">
-    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=200&h=110&fit=crop">
-    <div class="promo-nombre">Cigarrillos + Encendedor</div>
-    <div class="promo-precio">$1600</div>
+    <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=160&fit=crop">
+    <div class="promo-nombre">Cigarrillos + Encendedor Pack</div>
+    <div class="promo-precio">$1.600</div>
     <div class="btn-group">
-      <button class="btn-pedir" onclick="abrirPedido('Cigarrillos + Encendedor',1600)">Pedir $1.600</button>
+      <button class="btn-pedir" onclick="abrirPedido('Cigarrillos + Encendedor',1600)">Pedir</button>
       <button class="btn-carrito" data-promo="Cigarrillos + Encendedor" data-precio="1600">+ Carrito</button>
     </div>
   </div>
@@ -166,11 +161,11 @@ h1 {font-size:22px; color:#25D366}
 <div class="seccion-titulo" id="combos">🎯 Combos</div>
 <div class="grid-promos" data-categoria="combos">
   <div class="promo-item">
-    <img src="https://images.unsplash.com/photo-1485809052867-1993bd6afa1f?w=200&h=110&fit=crop">
-    <div class="promo-nombre">Combo Previa: Birra + Snack</div>
-    <div class="promo-precio">$5500</div>
+    <img src="https://images.unsplash.com/photo-1485809052867-1993bd6afa1f?w=400&h=160&fit=crop">
+    <div class="promo-nombre">Combo Previa: 2x Birra + 2x Snack</div>
+    <div class="promo-precio">$5.500</div>
     <div class="btn-group">
-      <button class="btn-pedir" onclick="abrirPedido('Combo Previa: Birra + Snack',5500)">Pedir $5.500</button>
+      <button class="btn-pedir" onclick="abrirPedido('Combo Previa: Birra + Snack',5500)">Pedir</button>
       <button class="btn-carrito" data-promo="Combo Previa: Birra + Snack" data-precio="5500">+ Carrito</button>
     </div>
   </div>
@@ -178,14 +173,16 @@ h1 {font-size:22px; color:#25D366}
 
 </div>
 
+<!-- CARRITO FLOTANTE -->
+<button class="btn-carrito-float" onclick="abrirCarritoModal()">
+  🛒 Carrito <span class="cart-count-badge" id="contador-carrito">0</span>
+</button>
+
 <!-- MODAL CARRITO/PEDIDO -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <div class="modal-header">
-      <img id="modal-img" src="https://cdn-icons-png.flaticon.com/512/3144/3144456.png" alt="">
-      <div style="flex:1">
-        <h3 id="modal-nombre">Tu Pedido</h3>
-      </div>
+      <h3 id="modal-nombre">Tu Pedido</h3>
       <span class="modal-close" onclick="cerrarModal()">&times;</span>
     </div>
     
@@ -200,18 +197,16 @@ h1 {font-size:22px; color:#25D366}
         <div class="opcion-envio">
           <input type="radio" id="pago-efectivo" name="pago" value="Efectivo" checked>
           <label for="pago-efectivo">💵 Efectivo<br><small>Contra entrega</small></label>
-          
           <input type="radio" id="pago-transfer" name="pago" value="Transferencia">
-          <label for="pago-transfer">🏦 Transferencia<br><small>Te pasamos CBU</small></label>
-          
+          <label for="pago-transfer">🏦 Transferencia</label>
           <input type="radio" id="pago-mp" name="pago" value="Mercado Pago">
-          <label for="pago-mp">📱 Mercado Pago<br><small>Te mandamos link</small></label>
+          <label for="pago-mp">📱 M.Pago</label>
         </div>
       </div>
 
       <div style="margin:15px 0; padding:12px; background:#2a2a2a; border-radius:8px">
         <p style="font-size:18px; margin:10px 0; text-align:center">
-          <span id="texto-envio">Envío a domicilio: <b style="color:#25D366">$2.000</b></span><br>
+          <span id="texto-envio">Envío: <b style="color:#25D366">$2.000</b></span><br>
           Total: <b id="pedido-total" style="color:#25D366; font-size:22px"></b>
         </p>
       </div>
@@ -263,7 +258,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   closeBtn.onclick = () => lightbox.style.display = 'none';
   lightbox.onclick = (e) => { if(e.target == lightbox) lightbox.style.display = 'none'; }
-  document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lightbox.style.display = 'none'; });
 });
 
 function guardarCarrito() {
@@ -272,10 +266,7 @@ function guardarCarrito() {
 
 document.addEventListener('click', e => {
   if(e.target.classList.contains('btn-carrito')) {
-    const item = {
-      promo: e.target.dataset.promo, 
-      precio: parseInt(e.target.dataset.precio)
-    };
+    const item = {promo: e.target.dataset.promo, precio: parseInt(e.target.dataset.precio)};
     carrito.push(item);
     guardarCarrito();
     actualizarContadorCarrito();
@@ -285,7 +276,7 @@ document.addEventListener('click', e => {
 });
 
 function actualizarContadorCarrito() {
-  document.getElementById('contador-carrito').textContent = `(${carrito.length})`;
+  document.getElementById('contador-carrito').textContent = carrito.length;
 }
 
 function vaciarCarrito() {
@@ -299,7 +290,7 @@ function vaciarCarrito() {
 
 function abrirCarritoModal() {
   if(carrito.length === 0) {
-    alert("El carrito está vacío. Agregá promos desde los botones + Carrito");
+    alert("El carrito está vacío. Agregá promos con + Carrito");
     return;
   }
   
@@ -308,7 +299,7 @@ function abrirCarritoModal() {
   document.getElementById('modal-nombre').textContent = 'Tu Carrito';
   
   document.getElementById('modal-pedido').style.display = 'block';
-  document.getElementById('titulo-modal').innerHTML = 'Confirmar Pedido del Carrito 🛒 <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar carrito</button>';
+  document.getElementById('titulo-modal').innerHTML = 'Confirmar Pedido 🛒 <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar</button>';
   
   const subtotal = carrito.reduce((a,b) => a + b.precio, 0);
   const total = subtotal + 2000;
@@ -319,7 +310,7 @@ function abrirCarritoModal() {
   });
   resumen += `</div><p style="text-align:center; margin-top:10px">Subtotal: $${subtotal.toLocaleString('es-AR')}</p>`;
   document.getElementById('resumen-pedido').innerHTML = resumen;
-  document.getElementById('texto-envio').innerHTML = 'Envío a domicilio: <b style="color:#25D366">$2.000</b>';
+  document.getElementById('texto-envio').innerHTML = 'Envío: <b style="color:#25D366">$2.000</b>';
   document.getElementById('opcion-envio-container').innerHTML = '';
   document.getElementById('pedido-total').textContent = '$' + total.toLocaleString('es-AR');
   
@@ -342,8 +333,7 @@ function abrirPedido(producto, precio) {
   const opcionesEnvio = `
     <div class="opcion-envio">
       <input type="radio" id="retiro" name="entrega" value="retiro" checked onchange="cambiarTipoEntrega('retiro', ${precio})">
-      <label for="retiro">🏪 Retirar<br><small>Sin costo</small></label>
-      
+      <label for="retiro">🏪 Retirar<br><small>Gratis</small></label>
       <input type="radio" id="envio" name="entrega" value="envio" onchange="cambiarTipoEntrega('envio', ${precio})">
       <label for="envio">🚚 Envío<br><small>+ $2.000</small></label>
     </div>
@@ -351,7 +341,7 @@ function abrirPedido(producto, precio) {
   
   document.getElementById('resumen-pedido').innerHTML = resumen;
   document.getElementById('opcion-envio-container').innerHTML = opcionesEnvio;
-  document.getElementById('texto-envio').innerHTML = 'Retiro en local: <b style="color:#25D366">GRATIS</b>';
+  document.getElementById('texto-envio').innerHTML = 'Retiro: <b style="color:#25D366">GRATIS</b>';
   document.getElementById('pedido-total').textContent = '$' + precio.toLocaleString('es-AR');
   
   document.getElementById('modal').style.display = 'flex';
@@ -360,10 +350,10 @@ function abrirPedido(producto, precio) {
 function cambiarTipoEntrega(tipo, precio) {
   tipoEntrega = tipo;
   if(tipo === 'envio') {
-    document.getElementById('texto-envio').innerHTML = 'Envío a domicilio: <b style="color:#25D366">$2.000</b>';
+    document.getElementById('texto-envio').innerHTML = 'Envío: <b style="color:#25D366">$2.000</b>';
     document.getElementById('pedido-total').textContent = '$' + (precio + 2000).toLocaleString('es-AR');
   } else {
-    document.getElementById('texto-envio').innerHTML = 'Retiro en local: <b style="color:#25D366">GRATIS</b>';
+    document.getElementById('texto-envio').innerHTML = 'Retiro: <b style="color:#25D366">GRATIS</b>';
     document.getElementById('pedido-total').textContent = '$' + precio.toLocaleString('es-AR');
   }
 }
@@ -375,29 +365,20 @@ function enviarWhatsApp() {
   const nota = document.getElementById('pedido-nota').value;
   const metodoPago = document.querySelector('input[name="pago"]:checked').value;
   
-  if(!nombre || !tel) {
-    alert('Completá nombre y teléfono. Son obligatorios');
-    return;
-  }
-  
-  if(tipoEntrega === 'envio' && !direccion) {
-    alert('Completá la dirección para el envío');
-    return;
-  }
+  if(!nombre || !tel) return alert('Completá nombre y teléfono');
+  if(tipoEntrega === 'envio' && !direccion) return alert('Completá la dirección');
   
   let msg = `*NUEVO PEDIDO - ASI ES LA BIRRA*%0A%0A`;
   
   if(pedidoActual.tipo === 'carrito') {
-    msg += `*Pedido desde CARRITO*%0A*Modalidad: ${tipoEntrega === 'envio' ? 'ENVÍO' : 'RETIRO'}*%0A%0A`;
+    msg += `*CARRITO*%0A*Modalidad: ${tipoEntrega === 'envio' ? 'ENVÍO' : 'RETIRO'}*%0A%0A`;
     carrito.forEach(i => msg += `• ${i.promo} $${i.precio.toLocaleString('es-AR')}%0A`);
     const subtotal = carrito.reduce((a,b) => a + b.precio, 0);
     const total = tipoEntrega === 'envio' ? subtotal + 2000 : subtotal;
     if(tipoEntrega === 'envio') msg += `%0ASubtotal: $${subtotal.toLocaleString('es-AR')}%0AEnvío: $2.000%0A`;
     msg += `*TOTAL: $${total.toLocaleString('es-AR')}*%0A%0A`;
     msg += `*Nombre:* ${nombre}%0A*Tel:* ${tel}%0A*Dirección:* ${direccion}%0A*Nota:* ${nota}%0A*Pago:* ${metodoPago}`;
-    carrito = [];
-    guardarCarrito();
-    actualizarContadorCarrito();
+    carrito = []; guardarCarrito(); actualizarContadorCarrito();
   } else {
     const total = tipoEntrega === 'envio' ? pedidoActual.precio + 2000 : pedidoActual.precio;
     msg += `*Promo:* ${pedidoActual.producto}%0A*Precio:* $${pedidoActual.precio.toLocaleString('es-AR')}%0A*Modalidad:* ${tipoEntrega === 'envio' ? 'ENVÍO' : 'RETIRO'}%0A`;
