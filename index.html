@@ -2,17 +2,13 @@
 <html lang="es" class="h-full bg-slate-950 text-slate-100">
 <head>
   <meta charset="UTF-8" />
-  <!-- Meta viewport estricta para forzar escala móvil perfecta en navegadores internos de apps -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#f59e0b" />
   <title>LOS TALIBANES - Menú Digital</title>
   
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
-    /* Forzar soporte de altura real en dispositivos móviles (evita saltos con barras de navegación) */
     html, body {
       height: 100%;
       overscroll-behavior-y: none;
@@ -23,41 +19,41 @@
 </head>
 <body class="min-h-full flex flex-col font-sans antialiased bg-slate-950 text-slate-100 pb-28 select-none">
 
-  <!-- HEADER PRINCIPAL -->
-  <header class="bg-gradient-to-b from-amber-600 to-amber-700 text-slate-950 sticky top-0 z-30 shadow-xl">
-    <div class="max-w-xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-      <div class="flex items-center gap-3">
-        <img id="store-logo-img" src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=150&auto=format&fit=crop&q=80" alt="Logo" class="w-12 h-12 rounded-full object-cover border-2 border-amber-300 shadow-md bg-slate-900" />
-        <div>
-          <h1 id="store-name-text" class="text-xl font-extrabold tracking-tight uppercase leading-none">LOS TALIBANES</h1>
-          <p id="store-slogan-text" class="text-xs font-semibold text-amber-950 opacity-90 mt-0.5">Sabores Explosivos & Unicos</p>
+  <!-- ENCABEZADO CENTRADO Y LIMITADO -->
+  <div class="w-full bg-gradient-to-b from-amber-600 to-amber-700 text-slate-950 sticky top-0 z-30 shadow-xl">
+    <header class="max-w-md mx-auto px-4 py-3">
+      <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center gap-3 overflow-hidden">
+          <img id="store-logo-img" src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=150&auto=format&fit=crop&q=80" alt="Logo" class="w-12 h-12 rounded-full object-cover border-2 border-amber-300 shadow-md bg-slate-900 shrink-0" />
+          <div class="min-w-0">
+            <h1 id="store-name-text" class="text-xl font-extrabold tracking-tight uppercase leading-none truncate">LOS TALIBANES</h1>
+            <p id="store-slogan-text" class="text-xs font-semibold text-amber-950 opacity-90 mt-0.5 truncate">Sabores Explosivos & Unicos</p>
+          </div>
+        </div>
+        <button onclick="abrirAdminModal()" class="w-10 h-10 rounded-full bg-amber-800/30 text-slate-950 flex items-center justify-center hover:bg-amber-800/50 transition active:scale-95 shrink-0">
+          <i class="fa-solid fa-gear text-lg"></i>
+        </button>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-2 border-t border-amber-600/30 pt-2 mt-2">
+        <p id="store-desc-text" class="text-xs text-amber-950 font-medium italic truncate max-w-[240px]">Las mejores hamburguesas y lomitos de la ciudad.</p>
+        <div class="flex items-center gap-2 shrink-0">
+          <a id="link-ig" href="#" target="_blank" class="w-7 h-7 rounded-full bg-slate-950/20 flex items-center justify-center text-slate-950 text-xs hover:bg-slate-950/40 transition">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a id="link-fb" href="#" target="_blank" class="w-7 h-7 rounded-full bg-slate-950/20 flex items-center justify-center text-slate-950 text-xs hover:bg-slate-950/40 transition">
+            <i class="fa-brands fa-facebook"></i>
+          </a>
+          <a id="link-wsp" href="#" target="_blank" class="w-7 h-7 rounded-full bg-slate-950/20 flex items-center justify-center text-slate-950 text-xs hover:bg-slate-950/40 transition">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
         </div>
       </div>
-      <!-- Botón Acceso Admin -->
-      <button onclick="abrirAdminModal()" class="w-10 h-10 rounded-full bg-amber-800/30 text-slate-950 flex items-center justify-center hover:bg-amber-800/50 transition active:scale-95">
-        <i class="fa-solid fa-gear text-lg"></i>
-      </button>
-    </div>
+    </header>
+  </div>
 
-    <!-- Descripción Corta y Redes Sociales -->
-    <div class="max-w-xl mx-auto px-4 pb-3 flex flex-wrap items-center justify-between gap-2 border-t border-amber-600/30 pt-2">
-      <p id="store-desc-text" class="text-xs text-amber-950 font-medium italic">Las mejores hamburguesas y lomitos de la ciudad.</p>
-      <div class="flex items-center gap-2">
-        <a id="link-ig" href="#" target="_blank" class="w-7 h-7 rounded-full bg-slate-950/20 flex items-center justify-center text-slate-950 text-xs hover:bg-slate-950/40 transition">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a id="link-fb" href="#" target="_blank" class="w-7 h-7 rounded-full bg-slate-950/20 flex items-center justify-center text-slate-950 text-xs hover:bg-slate-950/40 transition">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
-        <a id="link-wsp" href="#" target="_blank" class="w-7 h-7 rounded-full bg-slate-950/20 flex items-center justify-center text-slate-950 text-xs hover:bg-slate-950/40 transition">
-          <i class="fa-brands fa-whatsapp"></i>
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- CONTENIDO PRINCIPAL / CLIENTE -->
-  <main class="max-w-xl mx-auto w-full px-4 pt-4 space-y-6">
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="max-w-md mx-auto w-full px-4 pt-4 space-y-6 flex-1">
 
     <!-- Filtros por Categoría -->
     <div class="flex gap-2 overflow-x-auto no-scrollbar py-1">
@@ -79,20 +75,20 @@
 
     <!-- LISTADO DE PRODUCTOS -->
     <section class="space-y-4">
-      <h2 class="text-sm font-bold uppercase tracking-wider text-amber-500 flex items-center gap-2">
+      <h2 class="text-sm font-bold uppercase tracking-wider text-amber-500 flex items-center justify-between">
         <span>Catálogo de Sabores</span>
         <span id="cant-productos-count" class="text-xs bg-slate-800 text-slate-400 px-2 py-0.5 rounded-full font-normal">0</span>
       </h2>
 
       <div id="grid-productos" class="space-y-4">
-        <!-- Renderizado dinámico JS -->
+        <!-- Render dinámico -->
       </div>
     </section>
   </main>
 
-  <!-- BARRA FLOTANTE DE CHECKOUT (PASO 1) -->
+  <!-- BARRA FLOTANTE DE CHECKOUT -->
   <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-4 shadow-2xl z-20">
-    <div class="max-w-xl mx-auto flex items-center justify-between gap-3">
+    <div class="max-w-md mx-auto flex items-center justify-between gap-3">
       <div>
         <p class="text-[11px] uppercase font-bold text-slate-400">Total acumulado</p>
         <p id="total-carrito-text" class="text-xl font-black text-amber-400">$0</p>
@@ -105,10 +101,9 @@
     </div>
   </div>
 
-  <!-- MODAL DE CHECKOUT (PASO 2: FORMULARIO Y CONFIRMACIÓN DE COMPRA) -->
+  <!-- MODAL CHECKOUT -->
   <div id="modal-checkout" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
-    <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-      <!-- Modal Header -->
+    <div class="bg-slate-900 border border-slate-800 w-full max-w-md rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="p-4 bg-slate-800/80 border-b border-slate-800 flex items-center justify-between">
         <h3 class="font-black text-lg text-amber-400 flex items-center gap-2">
           <i class="fa-solid fa-cart-shopping"></i> Confirmar Pedido
@@ -118,21 +113,16 @@
         </button>
       </div>
 
-      <!-- Modal Body -->
       <div class="p-4 overflow-y-auto space-y-4 text-sm">
-        <!-- Resumen de items -->
         <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800">
           <p class="text-xs font-bold text-slate-400 uppercase mb-2">Resumen de tu selección:</p>
-          <div id="lista-resumen-carrito" class="space-y-2 max-h-36 overflow-y-auto pr-1">
-            <!-- Render dinámico -->
-          </div>
+          <div id="lista-resumen-carrito" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
           <div class="border-t border-slate-800 mt-3 pt-2 flex justify-between items-center font-bold">
             <span class="text-slate-300">Total a Pagar:</span>
             <span id="modal-total-text" class="text-amber-400 text-lg font-black">$0</span>
           </div>
         </div>
 
-        <!-- Formulario Cliente -->
         <form id="form-checkout" onsubmit="procesarPedidoCliente(event)" class="space-y-3">
           <div>
             <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Nombre Completo *</label>
@@ -162,7 +152,6 @@
             </div>
           </div>
 
-          <!-- Campo Dirección (Condicional) -->
           <div id="div-cli-direccion">
             <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Dirección de Entrega *</label>
             <input type="text" id="cli-direccion" placeholder="Calle, Número, Piso/Dpto" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-amber-500" />
@@ -170,7 +159,7 @@
 
           <div>
             <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Aclaraciones / Preferencias (Opcional)</label>
-            <textarea id="cli-notas" rows="2" placeholder="Ej: Sin mayonesa, la hamburguesa bien cocida, etc." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-amber-500"></textarea>
+            <textarea id="cli-notas" rows="2" placeholder="Ej: Sin mayonesa, etc." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-amber-500"></textarea>
           </div>
 
           <div>
@@ -187,14 +176,13 @@
             </div>
           </div>
 
-          <!-- Datos CBU Transferencia -->
           <div id="div-cbu-info" class="hidden bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl text-xs space-y-1 text-amber-200">
             <p class="font-bold">Datos para Transferir:</p>
             <p id="cbu-display-text">Alias / CBU: CBU.TALIBANES.MP</p>
-            <p class="text-[10px] text-slate-400">* Envía el comprobante de pago luego por WhatsApp.</p>
+            <p class="text-[10px] text-slate-400">* Envía el comprobante por WhatsApp luego.</p>
           </div>
 
-          <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-black py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg shadow-green-600/20 active:scale-98 transition mt-2">
+          <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-black py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg active:scale-98 transition mt-2">
             <span>Enviar Pedido a WhatsApp</span>
             <i class="fa-brands fa-whatsapp text-lg"></i>
           </button>
@@ -203,11 +191,9 @@
     </div>
   </div>
 
-  <!-- MODAL PANEL DE ADMINISTRACIÓN COMPLETO Y RESPONSIVE -->
+  <!-- MODAL ADMIN -->
   <div id="modal-admin" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
-    <div class="bg-slate-900 border border-slate-800 w-full max-w-2xl h-[94vh] rounded-2xl flex flex-col shadow-2xl overflow-hidden">
-      
-      <!-- Admin Header -->
+    <div class="bg-slate-900 border border-slate-800 w-full max-w-md h-[94vh] rounded-2xl flex flex-col shadow-2xl overflow-hidden">
       <div class="p-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-sliders text-amber-500 text-lg"></i>
@@ -218,7 +204,6 @@
         </button>
       </div>
 
-      <!-- Pantalla Login Admin -->
       <div id="admin-login-view" class="p-6 flex-1 flex flex-col items-center justify-center space-y-4">
         <div class="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 text-2xl">
           <i class="fa-solid fa-lock"></i>
@@ -235,56 +220,37 @@
         </form>
       </div>
 
-      <!-- Contenido Admin Dashboard -->
       <div id="admin-dashboard-view" class="flex-1 flex flex-col overflow-hidden hidden">
-        <!-- TABS DE NAVEGACIÓN -->
         <div class="flex border-b border-slate-800 bg-slate-950 shrink-0">
-          <button onclick="cambiarTabAdmin('pedidos')" id="tab-btn-pedidos" class="flex-1 py-3 text-xs font-bold text-center border-b-2 border-amber-500 text-amber-500">
-            📊 Pedidos
-          </button>
-          <button onclick="cambiarTabAdmin('productos')" id="tab-btn-productos" class="flex-1 py-3 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent">
-            🍔 Productos
-          </button>
-          <button onclick="cambiarTabAdmin('tienda')" id="tab-btn-tienda" class="flex-1 py-3 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent">
-            ⚙️ Tienda
-          </button>
+          <button onclick="cambiarTabAdmin('pedidos')" id="tab-btn-pedidos" class="flex-1 py-3 text-xs font-bold text-center border-b-2 border-amber-500 text-amber-500">📊 Pedidos</button>
+          <button onclick="cambiarTabAdmin('productos')" id="tab-btn-productos" class="flex-1 py-3 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent">🍔 Productos</button>
+          <button onclick="cambiarTabAdmin('tienda')" id="tab-btn-tienda" class="flex-1 py-3 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent">⚙️ Tienda</button>
         </div>
 
-        <!-- TAB 1: HISTORIAL Y GESTIÓN DE PEDIDOS -->
         <div id="tab-pedidos" class="p-4 flex-1 overflow-y-auto space-y-4">
           <div class="flex items-center justify-between">
-            <h3 class="font-extrabold text-sm text-slate-200">Registro de Pedidos Recibidos</h3>
-            <button onclick="borrarTodosLosPedidos()" class="text-[10px] bg-red-500/20 text-red-400 px-2.5 py-1 rounded-lg hover:bg-red-500/30">
-              Vaciar Registro
-            </button>
+            <h3 class="font-extrabold text-sm text-slate-200">Registro de Pedidos</h3>
+            <button onclick="borrarTodosLosPedidos()" class="text-[10px] bg-red-500/20 text-red-400 px-2.5 py-1 rounded-lg">Vaciar</button>
           </div>
-
-          <div id="lista-pedidos-admin" class="space-y-3">
-            <!-- Render Dinámico de Pedidos -->
-          </div>
+          <div id="lista-pedidos-admin" class="space-y-3"></div>
         </div>
 
-        <!-- TAB 2: GESTIÓN DE PRODUCTOS -->
         <div id="tab-productos" class="p-4 flex-1 overflow-y-auto space-y-6 hidden">
           <form id="form-producto-admin" onsubmit="guardarProducto(event)" class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
             <h4 id="form-prod-titulo" class="font-extrabold text-sm text-amber-400">➕ Agregar Nuevo Producto</h4>
             <input type="hidden" id="edit-prod-id" value="" />
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nombre del Producto *</label>
-                <input type="text" id="prod-nombre" required placeholder="Ej: Promo Doble Talibán" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-500" />
-              </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nombre *</label>
+              <input type="text" id="prod-nombre" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+            </div>
+            <div class="grid grid-cols-2 gap-2">
               <div>
                 <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Precio ($) *</label>
-                <input type="number" id="prod-precio" required placeholder="8500" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-500" />
+                <input type="number" id="prod-precio" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
               </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
                 <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Categoría *</label>
-                <select id="prod-categoria" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-500">
+                <select id="prod-categoria" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100">
                   <option value="Promos">Promos</option>
                   <option value="Hamburguesas">Hamburguesas</option>
                   <option value="Lomitos">Lomitos</option>
@@ -292,109 +258,86 @@
                   <option value="Bebidas">Bebidas</option>
                 </select>
               </div>
-              <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Etiqueta Destacada</label>
-                <select id="prod-etiqueta" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-500">
-                  <option value="">Ninguna</option>
-                  <option value="OFERTA">🔥 OFERTA</option>
-                  <option value="MENU DEL DIA">⭐ MENÚ DEL DÍA</option>
-                  <option value="NUEVO">✨ NUEVO</option>
-                </select>
-              </div>
             </div>
-
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Etiqueta</label>
+              <select id="prod-etiqueta" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100">
+                <option value="">Ninguna</option>
+                <option value="OFERTA">🔥 OFERTA</option>
+                <option value="MENU DEL DIA">⭐ MENÚ DEL DÍA</option>
+                <option value="NUEVO">✨ NUEVO</option>
+              </select>
+            </div>
             <div>
               <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Descripción</label>
-              <textarea id="prod-desc" rows="2" placeholder="Ingredientes y detalles del plato..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100 focus:outline-none focus:border-amber-500"></textarea>
+              <textarea id="prod-desc" rows="2" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100"></textarea>
             </div>
-
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Subir Fotos (Hasta 3 imágenes por Archivo) *</label>
-              <input type="file" id="prod-fotos-file" multiple accept="image/*" onchange="procesarArchivosFotos(this)" class="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-slate-950 hover:file:bg-amber-400 cursor-pointer" />
+              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Fotos (Hasta 3)</label>
+              <input type="file" id="prod-fotos-file" multiple accept="image/*" onchange="procesarArchivosFotos(this)" class="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-slate-950 cursor-pointer" />
               <div id="preview-fotos-contenedor" class="flex gap-2 mt-2 overflow-x-auto py-1"></div>
             </div>
-
             <div class="flex gap-2 pt-1">
-              <button type="submit" class="flex-1 bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs transition">
-                Guardar Producto
-              </button>
-              <button type="button" onclick="resetFormProducto()" class="bg-slate-800 text-slate-300 font-bold px-4 py-2.5 rounded-xl text-xs hover:bg-slate-700">
-                Cancelar
-              </button>
+              <button type="submit" class="flex-1 bg-amber-500 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs">Guardar</button>
+              <button type="button" onclick="resetFormProducto()" class="bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs">Cancelar</button>
             </div>
           </form>
-
           <div class="space-y-3">
-            <h4 class="font-extrabold text-xs text-slate-400 uppercase">Productos en la Tienda</h4>
+            <h4 class="font-extrabold text-xs text-slate-400 uppercase">Productos Existentes</h4>
             <div id="lista-productos-admin" class="space-y-2"></div>
           </div>
         </div>
 
-        <!-- TAB 3: CONFIGURACIÓN DE LA TIENDA -->
         <div id="tab-tienda" class="p-4 flex-1 overflow-y-auto space-y-4 hidden">
           <form onsubmit="guardarConfigTienda(event)" class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
-            <h4 class="font-extrabold text-sm text-amber-400">⚙️ Identidad de la Tienda</h4>
-            
+            <h4 class="font-extrabold text-sm text-amber-400">⚙️ Datos del Local</h4>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nombre del Local</label>
+              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nombre</label>
               <input type="text" id="cfg-nombre" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
             </div>
-
             <div>
               <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Slogan</label>
               <input type="text" id="cfg-slogan" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
             </div>
-
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Descripción Breve</label>
+              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Descripción</label>
               <input type="text" id="cfg-desc" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
             </div>
-
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Logo de la Tienda (Subir Archivo)</label>
+              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Logo (Archivo)</label>
               <input type="file" id="cfg-logo-file" accept="image/*" onchange="procesarLogoTiendaFile(this)" class="w-full text-xs text-slate-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-slate-200 cursor-pointer" />
             </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="grid grid-cols-2 gap-2">
               <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">WhatsApp del Local (sin +)</label>
-                <input type="text" id="cfg-wsp" placeholder="5491123456789" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">WhatsApp</label>
+                <input type="text" id="cfg-wsp" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Alias / CBU Transferencia</label>
-                <input type="text" id="cfg-cbu" placeholder="TALIBANES.MP" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Alias/CBU</label>
+                <input type="text" id="cfg-cbu" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
               </div>
             </div>
-
-            <h4 class="font-extrabold text-xs text-amber-400 pt-2 border-t border-slate-800">Redes Sociales</h4>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="grid grid-cols-2 gap-2">
               <div>
                 <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Instagram Link</label>
-                <input type="url" id="cfg-ig" placeholder="https://instagram.com/..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+                <input type="url" id="cfg-ig" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
               </div>
               <div>
                 <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Facebook Link</label>
-                <input type="url" id="cfg-fb" placeholder="https://facebook.com/..." class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+                <input type="url" id="cfg-fb" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
               </div>
             </div>
-
-            <h4 class="font-extrabold text-xs text-amber-400 pt-2 border-t border-slate-800">Seguridad</h4>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nueva Contraseña Admin</label>
-              <input type="text" id="cfg-pass" placeholder="admin123" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Contraseña Admin</label>
+              <input type="text" id="cfg-pass" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
             </div>
-
-            <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold py-3 rounded-xl text-xs transition mt-2">
-              Guardar Configuración
-            </button>
+            <button type="submit" class="w-full bg-amber-500 text-slate-950 font-extrabold py-3 rounded-xl text-xs">Guardar Cambios</button>
           </form>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- SCRIPT -->
   <script>
     const DEFAULT_CONFIG = {
       nombre: "LOS TALIBANES",
@@ -488,7 +431,7 @@
       }
 
       if (filtrados.length === 0) {
-        grid.innerHTML = `<p class="text-center text-xs text-slate-500 py-8">No hay productos disponibles en esta categoría.</p>`;
+        grid.innerHTML = `<p class="text-center text-xs text-slate-500 py-8">No hay productos disponibles.</p>`;
         return;
       }
 
@@ -500,9 +443,7 @@
         if (prod.fotos && prod.fotos.length > 0) {
           fotosHTML = `
             <div class="relative overflow-x-auto no-scrollbar flex snap-x snap-mandatory rounded-xl bg-slate-950 aspect-video mb-3">
-              ${prod.fotos.map((f, idx) => `
-                <img src="${f}" alt="${prod.nombre}" class="w-full h-full object-cover shrink-0 snap-center" />
-              `).join('')}
+              ${prod.fotos.map(f => `<img src="${f}" alt="${prod.nombre}" class="w-full h-full object-cover shrink-0 snap-center" />`).join('')}
               ${prod.fotos.length > 1 ? `<span class="absolute bottom-2 right-2 bg-slate-950/80 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">📷 1/${prod.fotos.length}</span>` : ''}
             </div>
           `;
@@ -514,9 +455,9 @@
           <div>
             ${fotosHTML}
             <div class="flex items-start justify-between gap-2">
-              <div>
+              <div class="min-w-0">
                 ${prod.etiqueta ? `<span class="bg-red-600/90 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider">${prod.etiqueta}</span>` : ''}
-                <h3 class="font-black text-base text-slate-100 mt-1 leading-tight">${prod.nombre}</h3>
+                <h3 class="font-black text-base text-slate-100 mt-1 leading-tight truncate">${prod.nombre}</h3>
               </div>
               <span class="text-amber-400 font-black text-base shrink-0">$${prod.precio.toLocaleString('es-AR')}</span>
             </div>
@@ -527,7 +468,7 @@
             <span class="text-[11px] font-semibold text-slate-500 uppercase">${prod.categoria}</span>
             <div class="flex items-center gap-2">
               ${cantInCart > 0 ? `
-                <button onclick="cambiarCantidad('${prod.id}', -1)" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-200 font-bold flex items-center justify-center hover:bg-slate-700 active:scale-95">-</button>
+                <button onclick="cambiarCantidad('${prod.id}', -1)" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-200 font-bold flex items-center justify-center active:scale-95">-</button>
                 <span class="text-sm font-black text-amber-400 px-1">${cantInCart}</span>
               ` : ''}
               <button onclick="cambiarCantidad('${prod.id}', 1)" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-3.5 py-2 rounded-xl text-xs flex items-center gap-1 shadow-md active:scale-95 transition">
@@ -552,22 +493,13 @@
     function cambiarCantidad(prodId, delta) {
       const prod = productos.find(p => p.id === prodId);
       if (!prod) return;
-
       const idx = carrito.findIndex(c => c.id === prodId);
       if (idx > -1) {
         carrito[idx].cantidad += delta;
-        if (carrito[idx].cantidad <= 0) {
-          carrito.splice(idx, 1);
-        }
+        if (carrito[idx].cantidad <= 0) carrito.splice(idx, 1);
       } else if (delta > 0) {
-        carrito.push({
-          id: prod.id,
-          nombre: prod.nombre,
-          precio: prod.precio,
-          cantidad: 1
-        });
+        carrito.push({ id: prod.id, nombre: prod.nombre, precio: prod.precio, cantidad: 1 });
       }
-
       actualizarCarritoUI();
       renderizarCatalogo();
     }
@@ -586,8 +518,8 @@
       } else {
         listResumen.innerHTML = carrito.map(item => `
           <div class="flex justify-between items-center text-xs">
-            <span class="text-slate-200"><b class="text-amber-400">${item.cantidad}x</b> ${item.nombre}</span>
-            <span class="font-bold text-slate-300">$${(item.precio * item.cantidad).toLocaleString('es-AR')}</span>
+            <span class="text-slate-200 truncate"><b class="text-amber-400">${item.cantidad}x</b> ${item.nombre}</span>
+            <span class="font-bold text-slate-300 shrink-0">$${(item.precio * item.cantidad).toLocaleString('es-AR')}</span>
           </div>
         `).join('');
       }
@@ -595,7 +527,7 @@
 
     function abrirModalCheckout() {
       if (carrito.length === 0) {
-        alert("Agregá al menos un producto al carrito para continuar.");
+        alert("Agregá al menos un producto al carrito.");
         return;
       }
       document.getElementById('modal-checkout').classList.remove('hidden');
@@ -623,7 +555,6 @@
 
     function procesarPedidoCliente(e) {
       e.preventDefault();
-
       const nombre = document.getElementById('cli-nombre').value.trim();
       const telefono = document.getElementById('cli-telefono').value.trim();
       const modalidad = document.querySelector('input[name="cli-modalidad"]:checked').value;
@@ -637,7 +568,7 @@
         fecha: new Date().toLocaleString('es-AR'),
         cliente: { nombre, telefono },
         modalidad,
-        direccion: modalidad === 'Envío a Domicilio' ? direccion : 'N/A (Retira o Consume en Local)',
+        direccion: modalidad === 'Envío a Domicilio' ? direccion : 'N/A',
         notas: notas || 'Sin especificaciones',
         pago,
         items: [...carrito],
@@ -653,41 +584,30 @@
       msg += `*N° Pedido:* ${nuevoPedido.id}\n`;
       msg += `*Cliente:* ${nombre}\n`;
       msg += `*Teléfono:* ${telefono}\n\n`;
-      msg += `*DETALLE DEL PEDIDO:*\n`;
+      msg += `*DETALLE:*\n`;
       carrito.forEach(item => {
         msg += `• ${item.cantidad}x ${item.nombre} ($${item.precio * item.cantidad})\n`;
       });
       msg += `\n*TOTAL:* $${total.toLocaleString('es-AR')}\n`;
       msg += `*Entrega:* ${modalidad}\n`;
-      if (modalidad === 'Envío a Domicilio') {
-        msg += `*Dirección:* ${direccion}\n`;
-      }
-      msg += `*Forma de Pago:* ${pago}\n`;
-      if (notas) {
-        msg += `*Notas:* ${notas}\n`;
-      }
+      if (modalidad === 'Envío a Domicilio') msg += `*Dirección:* ${direccion}\n`;
+      msg += `*Pago:* ${pago}\n`;
+      if (notas) msg += `*Notas:* ${notas}\n`;
 
       carrito = [];
       actualizarCarritoUI();
       renderizarCatalogo();
       cerrarModalCheckout();
 
-      const urlWsp = `https://wa.me/${config.wsp}?text=${encodeURIComponent(msg)}`;
-      window.open(urlWsp, '_blank');
+      window.open(`https://wa.me/${config.wsp}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
-    function abrirAdminModal() {
-      document.getElementById('modal-admin').classList.remove('hidden');
-    }
-
-    function cerrarAdminModal() {
-      document.getElementById('modal-admin').classList.add('hidden');
-    }
+    function abrirAdminModal() { document.getElementById('modal-admin').classList.remove('hidden'); }
+    function cerrarAdminModal() { document.getElementById('modal-admin').classList.add('hidden'); }
 
     function verificarPasswordAdmin(e) {
       e.preventDefault();
-      const inputPass = document.getElementById('admin-pass-input').value;
-      if (inputPass === config.pass) {
+      if (document.getElementById('admin-pass-input').value === config.pass) {
         document.getElementById('admin-login-view').classList.add('hidden');
         document.getElementById('admin-dashboard-view').classList.remove('hidden');
         renderizarAdminProductos();
@@ -713,14 +633,12 @@
     function renderizarPedidosAdmin() {
       const cont = document.getElementById('lista-pedidos-admin');
       if (pedidos.length === 0) {
-        cont.innerHTML = `<p class="text-xs text-slate-500 text-center py-6">No hay pedidos registrados.</p>`;
+        cont.innerHTML = `<p class="text-xs text-slate-500 text-center py-6">No hay pedidos.</p>`;
         return;
       }
-
       cont.innerHTML = pedidos.map(ped => {
         const resumenItems = ped.items.map(i => `${i.cantidad}x ${i.nombre}`).join(', ');
         const mensajeDespacho = `Hola ${ped.cliente.nombre}! Ya estamos por despachar tu pedido #${ped.id}. Te enviamos lo que pediste: ${resumenItems}. Aclaraciones: ${ped.notas}. ¿Es lo que pediste?`;
-
         return `
           <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 space-y-2 text-xs">
             <div class="flex items-center justify-between">
@@ -731,16 +649,13 @@
               <p class="font-extrabold text-slate-200">${ped.cliente.nombre} (${ped.cliente.telefono})</p>
               <p class="text-slate-400 text-[11px]">📍 ${ped.direccion}</p>
               <p class="text-slate-400 text-[11px]">💳 ${ped.pago} | 🛵 ${ped.modalidad}</p>
-              <p class="text-amber-200 text-[11px] mt-1 font-medium">📝 ${ped.notas}</p>
+              <p class="text-amber-200 text-[11px] mt-1">📝 ${ped.notas}</p>
             </div>
-            <div class="bg-slate-900 p-2 rounded-xl text-[11px] font-mono text-slate-300">
-              ${resumenItems}
-            </div>
+            <div class="bg-slate-900 p-2 rounded-xl font-mono text-[11px] text-slate-300">${resumenItems}</div>
             <div class="flex items-center justify-between pt-1">
               <span class="font-black text-sm text-white">$${ped.total.toLocaleString('es-AR')}</span>
-              <a href="https://wa.me/${ped.cliente.telefono}?text=${encodeURIComponent(mensajeDespacho)}" target="_blank" class="bg-green-600 hover:bg-green-500 text-white font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition">
-                <i class="fa-brands fa-whatsapp text-sm"></i>
-                <span>Confirmar Despacho</span>
+              <a href="https://wa.me/${ped.cliente.telefono}?text=${encodeURIComponent(mensajeDespacho)}" target="_blank" class="bg-green-600 text-white font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5">
+                <i class="fa-brands fa-whatsapp"></i> Despacho
               </a>
             </div>
           </div>
@@ -749,7 +664,7 @@
     }
 
     function borrarTodosLosPedidos() {
-      if (confirm("¿Seguro que querés vaciar el historial de pedidos?")) {
+      if (confirm("¿Vaciar registro?")) {
         pedidos = [];
         guardarEstadoLocal();
         renderizarPedidosAdmin();
@@ -761,17 +676,11 @@
       fotosSubidasTemp = [];
       const contenedorPreview = document.getElementById('preview-fotos-contenedor');
       contenedorPreview.innerHTML = '';
-
       files.forEach(file => {
         const reader = new FileReader();
         reader.onload = (e) => {
-          const base64 = e.target.result;
-          fotosSubidasTemp.push(base64);
-
-          const imgPreview = document.createElement('img');
-          imgPreview.src = base64;
-          imgPreview.className = "w-14 h-14 object-cover rounded-xl border border-slate-700";
-          contenedorPreview.appendChild(imgPreview);
+          fotosSubidasTemp.push(e.target.result);
+          contenedorPreview.innerHTML += `<img src="${e.target.result}" class="w-14 h-14 object-cover rounded-xl border border-slate-700 shrink-0" />`;
         };
         reader.readAsDataURL(file);
       });
@@ -779,7 +688,6 @@
 
     function guardarProducto(e) {
       e.preventDefault();
-
       const editId = document.getElementById('edit-prod-id').value;
       const nombre = document.getElementById('prod-nombre').value.trim();
       const precio = parseFloat(document.getElementById('prod-precio').value);
@@ -790,31 +698,14 @@
       if (editId) {
         const idx = productos.findIndex(p => p.id === editId);
         if (idx > -1) {
-          productos[idx] = {
-            ...productos[idx],
-            nombre,
-            precio,
-            categoria,
-            etiqueta,
-            desc,
-            fotos: fotosSubidasTemp.length > 0 ? fotosSubidasTemp : productos[idx].fotos
-          };
+          productos[idx] = { ...productos[idx], nombre, precio, categoria, etiqueta, desc, fotos: fotosSubidasTemp.length > 0 ? fotosSubidasTemp : productos[idx].fotos };
         }
       } else {
         if (fotosSubidasTemp.length === 0) {
-          alert("Por favor selecciona al menos 1 foto para el producto.");
+          alert("Seleccioná al menos 1 foto.");
           return;
         }
-        const nuevoProd = {
-          id: "prod-" + Date.now(),
-          nombre,
-          precio,
-          categoria,
-          etiqueta,
-          desc,
-          fotos: [...fotosSubidasTemp]
-        };
-        productos.push(nuevoProd);
+        productos.push({ id: "prod-" + Date.now(), nombre, precio, categoria, etiqueta, desc, fotos: [...fotosSubidasTemp] });
       }
 
       guardarEstadoLocal();
@@ -828,19 +719,15 @@
       list.innerHTML = productos.map(p => `
         <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between gap-2">
           <div class="flex items-center gap-2 overflow-hidden">
-            <img src="${p.fotos && p.fotos[0] ? p.fotos[0] : ''}" class="w-10 h-10 object-cover rounded-lg shrink-0 bg-slate-900" />
-            <div class="truncate">
+            <img src="${p.fotos[0] || ''}" class="w-10 h-10 object-cover rounded-lg shrink-0 bg-slate-900" />
+            <div class="min-w-0">
               <p class="font-extrabold text-xs text-slate-100 truncate">${p.nombre}</p>
-              <p class="text-[10px] text-amber-400 font-bold">$${p.precio} | ${p.categoria}</p>
+              <p class="text-[10px] text-amber-400 font-bold">$${p.precio}</p>
             </div>
           </div>
-          <div class="flex items-center gap-1 shrink-0">
-            <button onclick="prepararEdicionProducto('${p.id}')" class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs">
-              <i class="fa-solid fa-pen"></i>
-            </button>
-            <button onclick="borrarProducto('${p.id}')" class="w-7 h-7 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center text-xs">
-              <i class="fa-solid fa-trash"></i>
-            </button>
+          <div class="flex gap-1 shrink-0">
+            <button onclick="prepararEdicionProducto('${p.id}')" class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs"><i class="fa-solid fa-pen"></i></button>
+            <button onclick="borrarProducto('${p.id}')" class="w-7 h-7 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center text-xs"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
       `).join('');
@@ -849,7 +736,6 @@
     function prepararEdicionProducto(id) {
       const p = productos.find(prod => prod.id === id);
       if (!p) return;
-
       document.getElementById('edit-prod-id').value = p.id;
       document.getElementById('prod-nombre').value = p.nombre;
       document.getElementById('prod-precio').value = p.precio;
@@ -857,14 +743,12 @@
       document.getElementById('prod-etiqueta').value = p.etiqueta || '';
       document.getElementById('prod-desc').value = p.desc || '';
       document.getElementById('form-prod-titulo').innerText = "✏️ Editar Producto";
-
       fotosSubidasTemp = [...p.fotos];
-      const contenedorPreview = document.getElementById('preview-fotos-contenedor');
-      contenedorPreview.innerHTML = p.fotos.map(f => `<img src="${f}" class="w-14 h-14 object-cover rounded-xl border border-slate-700" />`).join('');
+      document.getElementById('preview-fotos-contenedor').innerHTML = p.fotos.map(f => `<img src="${f}" class="w-14 h-14 object-cover rounded-xl border border-slate-700 shrink-0" />`).join('');
     }
 
     function borrarProducto(id) {
-      if (confirm("¿Eliminar este producto del catálogo?")) {
+      if (confirm("¿Eliminar?")) {
         productos = productos.filter(p => p.id !== id);
         guardarEstadoLocal();
         renderizarCatalogo();
@@ -894,16 +778,13 @@
     function procesarLogoTiendaFile(input) {
       if (input.files && input.files[0]) {
         const reader = new FileReader();
-        reader.onload = (e) => {
-          logoTempBase64 = e.target.result;
-        };
+        reader.onload = (e) => { logoTempBase64 = e.target.result; };
         reader.readAsDataURL(input.files[0]);
       }
     }
 
     function guardarConfigTienda(e) {
       e.preventDefault();
-
       config.nombre = document.getElementById('cfg-nombre').value.trim();
       config.slogan = document.getElementById('cfg-slogan').value.trim();
       config.desc = document.getElementById('cfg-desc').value.trim();
@@ -912,15 +793,11 @@
       config.ig = document.getElementById('cfg-ig').value.trim();
       config.fb = document.getElementById('cfg-fb').value.trim();
       config.pass = document.getElementById('cfg-pass').value.trim() || 'admin123';
-
-      if (logoTempBase64) {
-        config.logo = logoTempBase64;
-      }
-
+      if (logoTempBase64) config.logo = logoTempBase64;
       guardarEstadoLocal();
       aplicarConfiguracionTienda();
-      alert("¡Configuración de la tienda guardada correctamente!");
+      alert("¡Configuración guardada!");
     }
   </script>
 </body>
-  </html>
+        </html>
