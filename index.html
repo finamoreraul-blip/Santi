@@ -2,7 +2,7 @@
 <html lang="es" class="h-full bg-slate-950 text-slate-100">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#d97706" />
   <title>LOS TALIBANES - Menú Digital</title>
   
@@ -12,6 +12,7 @@
     html, body {
       min-height: 100%;
       overscroll-behavior-y: none;
+      -webkit-text-size-adjust: 100%;
     }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -60,20 +61,20 @@
 
     <!-- Filtros por Categoría -->
     <div class="flex gap-2 overflow-x-auto no-scrollbar py-1">
-      <button onclick="filtrarCategoria('TODOS')" class="cat-btn bg-amber-500 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm whitespace-nowrap shadow transition">🔥 Todos</button>
-      <button onclick="filtrarCategoria('Promos')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm whitespace-nowrap transition">🏷️ Promos</button>
-      <button onclick="filtrarCategoria('Hamburguesas')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm whitespace-nowrap transition">🍔 Hamburguesas</button>
-      <button onclick="filtrarCategoria('Lomitos')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm whitespace-nowrap transition">🥪 Lomitos</button>
-      <button onclick="filtrarCategoria('Menu del dia')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm whitespace-nowrap transition">⭐ Menú del Día</button>
-      <button onclick="filtrarCategoria('Bebidas')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm whitespace-nowrap transition">🥤 Bebidas</button>
+      <button onclick="filtrarCategoria('TODOS')" class="cat-btn bg-amber-500 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-sm whitespace-nowrap shadow transition">🔥 Todos</button>
+      <button onclick="filtrarCategoria('Promos')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-sm whitespace-nowrap transition">🏷️ Promos</button>
+      <button onclick="filtrarCategoria('Hamburguesas')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-sm whitespace-nowrap transition">🍔 Hamburguesas</button>
+      <button onclick="filtrarCategoria('Lomitos')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-sm whitespace-nowrap transition">🥪 Lomitos</button>
+      <button onclick="filtrarCategoria('Menu del dia')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-sm whitespace-nowrap transition">⭐ Menú del Día</button>
+      <button onclick="filtrarCategoria('Bebidas')" class="cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-sm whitespace-nowrap transition">🥤 Bebidas</button>
     </div>
 
     <!-- Banner Menú del Día -->
     <div id="banner-menu-dia" class="hidden bg-gradient-to-r from-amber-500/20 to-red-500/20 border border-amber-500/40 rounded-2xl p-4 relative overflow-hidden">
-      <span class="absolute top-2 right-2 bg-amber-500 text-slate-950 text-[10px] sm:text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Sugerencia del día</span>
+      <span class="absolute top-2 right-2 bg-amber-500 text-slate-950 text-xs font-black px-2.5 py-0.5 rounded-full uppercase">Sugerencia del día</span>
       <h3 class="text-sm font-bold text-amber-400">✨ ¡Plato Estrella Recomendado!</h3>
       <p id="menu-dia-titulo" class="text-base sm:text-lg font-extrabold text-white mt-1">Cargando sugerencia...</p>
-      <p id="menu-dia-desc" class="text-xs sm:text-sm text-slate-300 mt-0.5">...</p>
+      <p id="menu-dia-desc" class="text-sm text-slate-300 mt-0.5">...</p>
     </div>
 
     <!-- LISTADO DE PRODUCTOS -->
@@ -93,7 +94,7 @@
   <div class="fixed bottom-0 left-0 right-0 bg-slate-900/95 backdrop-blur-md border-t border-slate-800 p-4 shadow-2xl z-20">
     <div class="w-full flex items-center justify-between gap-3">
       <div>
-        <p class="text-[11px] uppercase font-bold text-slate-400">Total acumulado</p>
+        <p class="text-xs uppercase font-bold text-slate-400">Total acumulado</p>
         <p id="total-carrito-text" class="text-xl font-black text-amber-400">$0</p>
       </div>
       <button onclick="abrirModalCheckout()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black px-5 py-3 rounded-xl text-sm flex items-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95 transition">
@@ -105,19 +106,19 @@
   </div>
 
   <!-- MODAL CHECKOUT -->
-  <div id="modal-checkout" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
-    <div class="bg-slate-900 border border-slate-800 w-full rounded-t-3xl sm:rounded-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+  <div id="modal-checkout" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-end justify-center p-0 hidden">
+    <div class="bg-slate-900 border border-slate-800 w-full rounded-t-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
       <div class="p-4 bg-slate-800/80 border-b border-slate-800 flex items-center justify-between">
         <h3 class="font-black text-lg text-amber-400 flex items-center gap-2">
           <i class="fa-solid fa-cart-shopping"></i> Confirmar Pedido
         </h3>
-        <button onclick="cerrarModalCheckout()" class="w-8 h-8 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center hover:bg-slate-600 transition">
-          <i class="fa-solid fa-xmark"></i>
+        <button onclick="cerrarModalCheckout()" class="w-9 h-9 rounded-full bg-slate-700 text-slate-300 flex items-center justify-center hover:bg-slate-600 transition">
+          <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
 
-      <div class="p-4 overflow-y-auto space-y-4 text-sm">
-        <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800">
+      <div class="p-4 overflow-y-auto space-y-4 text-base">
+        <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800">
           <p class="text-xs font-bold text-slate-400 uppercase mb-2">Resumen de tu selección:</p>
           <div id="lista-resumen-carrito" class="space-y-2 max-h-36 overflow-y-auto pr-1"></div>
           <div class="border-t border-slate-800 mt-3 pt-2 flex justify-between items-center font-bold">
@@ -126,29 +127,29 @@
           </div>
         </div>
 
-        <form id="form-checkout" onsubmit="procesarPedidoCliente(event)" class="space-y-3">
+        <form id="form-checkout" onsubmit="procesarPedidoCliente(event)" class="space-y-4">
           <div>
             <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Nombre Completo *</label>
-            <input type="text" id="cli-nombre" required placeholder="Ej: Carlos Gómez" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-amber-500" />
+            <input type="text" id="cli-nombre" required placeholder="Ej: Carlos Gómez" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-base text-slate-100 focus:outline-none focus:border-amber-500" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Tu Número de Teléfono / WhatsApp *</label>
-            <input type="tel" id="cli-telefono" required placeholder="Ej: 1123456789" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-amber-500" />
+            <input type="tel" id="cli-telefono" required placeholder="Ej: 1123456789" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-base text-slate-100 focus:outline-none focus:border-amber-500" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Modalidad de Entrega *</label>
             <div class="grid grid-cols-3 gap-2">
-              <label class="flex flex-col items-center justify-center p-2.5 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-xs text-center font-semibold">
+              <label class="flex flex-col items-center justify-center p-3 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-xs text-center font-semibold">
                 <input type="radio" name="cli-modalidad" value="Envío a Domicilio" checked onchange="toggleCamposEntrega(this.value)" class="accent-amber-500 mb-1" />
                 <span>🚴 Delivery</span>
               </label>
-              <label class="flex flex-col items-center justify-center p-2.5 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-xs text-center font-semibold">
+              <label class="flex flex-col items-center justify-center p-3 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-xs text-center font-semibold">
                 <input type="radio" name="cli-modalidad" value="Retirar en Local" onchange="toggleCamposEntrega(this.value)" class="accent-amber-500 mb-1" />
                 <span>🛍️ Retirar</span>
               </label>
-              <label class="flex flex-col items-center justify-center p-2.5 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-xs text-center font-semibold">
+              <label class="flex flex-col items-center justify-center p-3 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-xs text-center font-semibold">
                 <input type="radio" name="cli-modalidad" value="Consumir en el Local" onchange="toggleCamposEntrega(this.value)" class="accent-amber-500 mb-1" />
                 <span>🍽️ En Local</span>
               </label>
@@ -157,35 +158,35 @@
 
           <div id="div-cli-direccion">
             <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Dirección de Entrega *</label>
-            <input type="text" id="cli-direccion" placeholder="Calle, Número, Piso/Dpto" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-amber-500" />
+            <input type="text" id="cli-direccion" placeholder="Calle, Número, Piso/Dpto" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-base text-slate-100 focus:outline-none focus:border-amber-500" />
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Aclaraciones / Preferencias (Opcional)</label>
-            <textarea id="cli-notas" rows="2" placeholder="Ej: Sin mayonesa, etc." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:border-amber-500"></textarea>
+            <textarea id="cli-notas" rows="2" placeholder="Ej: Sin mayonesa, etc." class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-base text-slate-100 focus:outline-none focus:border-amber-500"></textarea>
           </div>
 
           <div>
             <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Forma de Pago *</label>
             <div class="grid grid-cols-2 gap-2">
-              <label class="flex items-center gap-2 p-3 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-xs font-semibold">
+              <label class="flex items-center gap-2 p-3.5 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-sm font-semibold">
                 <input type="radio" name="cli-pago" value="Efectivo" checked onchange="toggleCbuInfo(false)" class="accent-amber-500" />
                 <span>💵 Efectivo</span>
               </label>
-              <label class="flex items-center gap-2 p-3 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-xs font-semibold">
+              <label class="flex items-center gap-2 p-3.5 bg-slate-950 rounded-xl border border-slate-800 cursor-pointer text-sm font-semibold">
                 <input type="radio" name="cli-pago" value="Transferencia" onchange="toggleCbuInfo(true)" class="accent-amber-500" />
                 <span>💳 Transferencia</span>
               </label>
             </div>
           </div>
 
-          <div id="div-cbu-info" class="hidden bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl text-xs space-y-1 text-amber-200">
-            <p class="font-bold">Datos para Transferir:</p>
-            <p id="cbu-display-text">Alias / CBU: CBU.TALIBANES.MP</p>
-            <p class="text-[10px] text-slate-400">* Envía el comprobante por WhatsApp luego.</p>
+          <div id="div-cbu-info" class="hidden bg-amber-500/10 border border-amber-500/30 p-3.5 rounded-xl text-xs space-y-1 text-amber-200">
+            <p class="font-bold text-sm">Datos para Transferir:</p>
+            <p id="cbu-display-text" class="text-sm">Alias / CBU: CBU.TALIBANES.MP</p>
+            <p class="text-xs text-slate-400">* Envía el comprobante por WhatsApp luego.</p>
           </div>
 
-          <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-black py-3.5 rounded-xl text-sm flex items-center justify-center gap-2 shadow-lg active:scale-98 transition mt-2">
+          <button type="submit" class="w-full bg-green-600 hover:bg-green-500 text-white font-black py-4 rounded-xl text-base flex items-center justify-center gap-2 shadow-lg active:scale-98 transition mt-2">
             <span>Enviar Pedido a WhatsApp</span>
             <i class="fa-brands fa-whatsapp text-lg"></i>
           </button>
@@ -194,20 +195,22 @@
     </div>
   </div>
 
-  <!-- MODAL ADMIN -->
-  <div id="modal-admin" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-4 hidden">
-    <div class="bg-slate-900 border border-slate-800 w-full max-w-lg h-[94vh] rounded-2xl flex flex-col shadow-2xl overflow-hidden">
+  <!-- MODAL ADMIN (PANTALLA COMPLETA 100% RESPONSIVE TIPO APP) -->
+  <div id="modal-admin" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-0 sm:p-4 hidden">
+    <div class="bg-slate-900 border border-slate-800 w-full h-full sm:h-[94vh] sm:max-w-2xl sm:rounded-2xl flex flex-col shadow-2xl overflow-hidden">
+      
       <div class="p-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between shrink-0">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-sliders text-amber-500 text-lg"></i>
           <h2 class="font-black text-slate-100 text-base">Panel de Control Admin</h2>
         </div>
-        <button onclick="cerrarAdminModal()" class="w-8 h-8 rounded-full bg-slate-800 text-slate-400 hover:text-white flex items-center justify-center">
-          <i class="fa-solid fa-xmark"></i>
+        <button onclick="cerrarAdminModal()" class="w-9 h-9 rounded-full bg-slate-800 text-slate-300 hover:text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark text-lg"></i>
         </button>
       </div>
 
-      <div id="admin-login-view" class="p-6 flex-1 flex flex-col items-center justify-center space-y-4">
+      <!-- Login Admin -->
+      <div id="admin-login-view" class="p-6 flex-1 flex flex-col items-center justify-center space-y-5">
         <div class="w-16 h-16 rounded-full bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-500 text-2xl">
           <i class="fa-solid fa-lock"></i>
         </div>
@@ -215,45 +218,48 @@
           <h3 class="font-extrabold text-lg">Acceso Restringido</h3>
           <p class="text-xs text-slate-400">Ingresá la contraseña de administrador</p>
         </div>
-        <form onsubmit="verificarPasswordAdmin(event)" class="w-full max-w-xs space-y-3">
-          <input type="password" id="admin-pass-input" placeholder="Contraseña (def: admin123)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-sm text-center text-slate-100 focus:outline-none focus:border-amber-500" />
-          <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3 rounded-xl text-sm transition">
+        <form onsubmit="verificarPasswordAdmin(event)" class="w-full max-w-xs space-y-3.5">
+          <input type="password" id="admin-pass-input" placeholder="Contraseña (def: admin123)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3.5 text-base text-center text-slate-100 focus:outline-none focus:border-amber-500" />
+          <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-black py-3.5 rounded-xl text-sm transition">
             Ingresar
           </button>
         </form>
       </div>
 
+      <!-- Dashboard Admin -->
       <div id="admin-dashboard-view" class="flex-1 flex flex-col overflow-hidden hidden">
         <div class="flex border-b border-slate-800 bg-slate-950 shrink-0">
-          <button onclick="cambiarTabAdmin('pedidos')" id="tab-btn-pedidos" class="flex-1 py-3 text-xs font-bold text-center border-b-2 border-amber-500 text-amber-500">📊 Pedidos</button>
-          <button onclick="cambiarTabAdmin('productos')" id="tab-btn-productos" class="flex-1 py-3 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent">🍔 Productos</button>
-          <button onclick="cambiarTabAdmin('tienda')" id="tab-btn-tienda" class="flex-1 py-3 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent">⚙️ Tienda</button>
+          <button onclick="cambiarTabAdmin('pedidos')" id="tab-btn-pedidos" class="flex-1 py-3.5 text-xs sm:text-sm font-bold text-center border-b-2 border-amber-500 text-amber-500">📊 Pedidos</button>
+          <button onclick="cambiarTabAdmin('productos')" id="tab-btn-productos" class="flex-1 py-3.5 text-xs sm:text-sm font-bold text-center text-slate-400 border-b-2 border-transparent">🍔 Productos</button>
+          <button onclick="cambiarTabAdmin('tienda')" id="tab-btn-tienda" class="flex-1 py-3.5 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent">⚙️ Tienda</button>
         </div>
 
+        <!-- Tab Pedidos -->
         <div id="tab-pedidos" class="p-4 flex-1 overflow-y-auto space-y-4">
           <div class="flex items-center justify-between">
             <h3 class="font-extrabold text-sm text-slate-200">Registro de Pedidos</h3>
-            <button onclick="borrarTodosLosPedidos()" class="text-[10px] bg-red-500/20 text-red-400 px-2.5 py-1 rounded-lg">Vaciar</button>
+            <button onclick="borrarTodosLosPedidos()" class="text-xs bg-red-500/20 text-red-400 px-3 py-1.5 rounded-lg font-semibold">Vaciar</button>
           </div>
           <div id="lista-pedidos-admin" class="space-y-3"></div>
         </div>
 
+        <!-- Tab Productos -->
         <div id="tab-productos" class="p-4 flex-1 overflow-y-auto space-y-6 hidden">
-          <form id="form-producto-admin" onsubmit="guardarProducto(event)" class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
+          <form id="form-producto-admin" onsubmit="guardarProducto(event)" class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3.5">
             <h4 id="form-prod-titulo" class="font-extrabold text-sm text-amber-400">➕ Agregar Nuevo Producto</h4>
             <input type="hidden" id="edit-prod-id" value="" />
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nombre *</label>
-              <input type="text" id="prod-nombre" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Nombre *</label>
+              <input type="text" id="prod-nombre" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
             </div>
             <div class="grid grid-cols-2 gap-2">
               <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Precio ($) *</label>
-                <input type="number" id="prod-precio" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Precio ($) *</label>
+                <input type="number" id="prod-precio" required class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Categoría *</label>
-                <select id="prod-categoria" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100">
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Categoría *</label>
+                <select id="prod-categoria" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100">
                   <option value="Promos">Promos</option>
                   <option value="Hamburguesas">Hamburguesas</option>
                   <option value="Lomitos">Lomitos</option>
@@ -263,8 +269,8 @@
               </div>
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Etiqueta</label>
-              <select id="prod-etiqueta" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100">
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Etiqueta</label>
+              <select id="prod-etiqueta" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100">
                 <option value="">Ninguna</option>
                 <option value="OFERTA">🔥 OFERTA</option>
                 <option value="MENU DEL DIA">⭐ MENÚ DEL DÍA</option>
@@ -272,17 +278,17 @@
               </select>
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Descripción</label>
-              <textarea id="prod-desc" rows="2" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100"></textarea>
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Descripción</label>
+              <textarea id="prod-desc" rows="2" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100"></textarea>
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Fotos (Hasta 3)</label>
-              <input type="file" id="prod-fotos-file" multiple accept="image/*" onchange="procesarArchivosFotos(this)" class="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-slate-950 cursor-pointer" />
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Fotos (Hasta 3)</label>
+              <input type="file" id="prod-fotos-file" multiple accept="image/*" onchange="procesarArchivosFotos(this)" class="w-full text-xs text-slate-400 file:mr-3 file:py-2.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-amber-500 file:text-slate-950 cursor-pointer" />
               <div id="preview-fotos-contenedor" class="flex gap-2 mt-2 overflow-x-auto py-1"></div>
             </div>
             <div class="flex gap-2 pt-1">
-              <button type="submit" class="flex-1 bg-amber-500 text-slate-950 font-extrabold py-2.5 rounded-xl text-xs">Guardar</button>
-              <button type="button" onclick="resetFormProducto()" class="bg-slate-800 text-slate-300 px-4 py-2.5 rounded-xl text-xs">Cancelar</button>
+              <button type="submit" class="flex-1 bg-amber-500 text-slate-950 font-extrabold py-3 rounded-xl text-sm">Guardar</button>
+              <button type="button" onclick="resetFormProducto()" class="bg-slate-800 text-slate-300 px-5 py-3 rounded-xl text-sm">Cancelar</button>
             </div>
           </form>
           <div class="space-y-3">
@@ -291,50 +297,51 @@
           </div>
         </div>
 
+        <!-- Tab Tienda Config -->
         <div id="tab-tienda" class="p-4 flex-1 overflow-y-auto space-y-4 hidden">
-          <form onsubmit="guardarConfigTienda(event)" class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3">
+          <form onsubmit="guardarConfigTienda(event)" class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-3.5">
             <h4 class="font-extrabold text-sm text-amber-400">⚙️ Datos del Local</h4>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nombre</label>
-              <input type="text" id="cfg-nombre" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Nombre</label>
+              <input type="text" id="cfg-nombre" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Slogan</label>
-              <input type="text" id="cfg-slogan" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Slogan</label>
+              <input type="text" id="cfg-slogan" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Descripción</label>
-              <input type="text" id="cfg-desc" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Descripción</label>
+              <input type="text" id="cfg-desc" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Logo (Archivo)</label>
-              <input type="file" id="cfg-logo-file" accept="image/*" onchange="procesarLogoTiendaFile(this)" class="w-full text-xs text-slate-400 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-slate-200 cursor-pointer" />
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Logo (Archivo)</label>
+              <input type="file" id="cfg-logo-file" accept="image/*" onchange="procesarLogoTiendaFile(this)" class="w-full text-xs text-slate-400 file:mr-3 file:py-2 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-slate-800 file:text-slate-200 cursor-pointer" />
             </div>
             <div class="grid grid-cols-2 gap-2">
               <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">WhatsApp</label>
-                <input type="text" id="cfg-wsp" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">WhatsApp</label>
+                <input type="text" id="cfg-wsp" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Alias/CBU</label>
-                <input type="text" id="cfg-cbu" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Alias/CBU</label>
+                <input type="text" id="cfg-cbu" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
               </div>
             </div>
             <div class="grid grid-cols-2 gap-2">
               <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Instagram Link</label>
-                <input type="url" id="cfg-ig" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Instagram Link</label>
+                <input type="url" id="cfg-ig" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
               </div>
               <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Facebook Link</label>
-                <input type="url" id="cfg-fb" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+                <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Facebook Link</label>
+                <input type="url" id="cfg-fb" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
               </div>
             </div>
             <div>
-              <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Contraseña Admin</label>
-              <input type="text" id="cfg-pass" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-xs text-slate-100" />
+              <label class="block text-xs font-bold text-slate-400 uppercase mb-1">Contraseña Admin</label>
+              <input type="text" id="cfg-pass" class="w-full bg-slate-900 border border-slate-800 rounded-xl p-3 text-sm text-slate-100" />
             </div>
-            <button type="submit" class="w-full bg-amber-500 text-slate-950 font-extrabold py-3 rounded-xl text-xs">Guardar Cambios</button>
+            <button type="submit" class="w-full bg-amber-500 text-slate-950 font-extrabold py-3.5 rounded-xl text-sm">Guardar Cambios</button>
           </form>
         </div>
       </div>
@@ -447,7 +454,7 @@
           fotosHTML = `
             <div class="relative overflow-x-auto no-scrollbar flex snap-x snap-mandatory rounded-xl bg-slate-950 aspect-video mb-3">
               ${prod.fotos.map(f => `<img src="${f}" alt="${prod.nombre}" class="w-full h-full object-cover shrink-0 snap-center" />`).join('')}
-              ${prod.fotos.length > 1 ? `<span class="absolute bottom-2 right-2 bg-slate-950/80 text-white text-[9px] font-bold px-2 py-0.5 rounded-full">📷 1/${prod.fotos.length}</span>` : ''}
+              ${prod.fotos.length > 1 ? `<span class="absolute bottom-2 right-2 bg-slate-950/80 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">📷 1/${prod.fotos.length}</span>` : ''}
             </div>
           `;
         }
@@ -459,22 +466,22 @@
             ${fotosHTML}
             <div class="flex items-start justify-between gap-2">
               <div class="min-w-0">
-                ${prod.etiqueta ? `<span class="bg-red-600/90 text-white text-[9px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider">${prod.etiqueta}</span>` : ''}
-                <h3 class="font-black text-base sm:text-lg text-slate-100 mt-1 leading-tight truncate">${prod.nombre}</h3>
+                ${prod.etiqueta ? `<span class="bg-red-600/90 text-white text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider">${prod.etiqueta}</span>` : ''}
+                <h3 class="font-black text-lg text-slate-100 mt-1 leading-tight truncate">${prod.nombre}</h3>
               </div>
-              <span class="text-amber-400 font-black text-base sm:text-lg shrink-0">$${prod.precio.toLocaleString('es-AR')}</span>
+              <span class="text-amber-400 font-black text-lg shrink-0">$${prod.precio.toLocaleString('es-AR')}</span>
             </div>
-            <p class="text-xs sm:text-sm text-slate-400 mt-1 line-clamp-2">${prod.desc || 'Sin descripción'}</p>
+            <p class="text-sm text-slate-400 mt-1 line-clamp-2">${prod.desc || 'Sin descripción'}</p>
           </div>
 
           <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between">
-            <span class="text-[11px] sm:text-xs font-semibold text-slate-500 uppercase">${prod.categoria}</span>
+            <span class="text-xs font-semibold text-slate-500 uppercase">${prod.categoria}</span>
             <div class="flex items-center gap-2">
               ${cantInCart > 0 ? `
-                <button onclick="cambiarCantidad('${prod.id}', -1)" class="w-8 h-8 rounded-lg bg-slate-800 text-slate-200 font-bold flex items-center justify-center active:scale-95">-</button>
-                <span class="text-sm font-black text-amber-400 px-1">${cantInCart}</span>
+                <button onclick="cambiarCantidad('${prod.id}', -1)" class="w-9 h-9 rounded-lg bg-slate-800 text-slate-200 font-bold flex items-center justify-center active:scale-95">-</button>
+                <span class="text-base font-black text-amber-400 px-1">${cantInCart}</span>
               ` : ''}
-              <button onclick="cambiarCantidad('${prod.id}', 1)" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-3.5 py-2 rounded-xl text-xs sm:text-sm flex items-center gap-1 shadow-md active:scale-95 transition">
+              <button onclick="cambiarCantidad('${prod.id}', 1)" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-black px-4 py-2.5 rounded-xl text-sm flex items-center gap-1 shadow-md active:scale-95 transition">
                 <span>+ Agregar</span>
               </button>
             </div>
@@ -487,9 +494,9 @@
     function filtrarCategoria(cat) {
       categoriaFiltroActual = cat;
       document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.className = "cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm whitespace-nowrap transition";
+        btn.className = "cat-btn bg-slate-800 text-slate-300 hover:bg-slate-700 font-semibold px-4 py-2.5 rounded-xl text-sm whitespace-nowrap transition";
       });
-      event.target.className = "cat-btn bg-amber-500 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm whitespace-nowrap shadow transition";
+      event.target.className = "cat-btn bg-amber-500 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-sm whitespace-nowrap shadow transition";
       renderizarCatalogo();
     }
 
@@ -520,7 +527,7 @@
         listResumen.innerHTML = `<p class="text-xs text-slate-500 italic">No agregaste productos aún.</p>`;
       } else {
         listResumen.innerHTML = carrito.map(item => `
-          <div class="flex justify-between items-center text-xs">
+          <div class="flex justify-between items-center text-sm">
             <span class="text-slate-200 truncate"><b class="text-amber-400">${item.cantidad}x</b> ${item.nombre}</span>
             <span class="font-bold text-slate-300 shrink-0">$${(item.precio * item.cantidad).toLocaleString('es-AR')}</span>
           </div>
@@ -625,40 +632,40 @@
       document.getElementById('tab-productos').classList.add('hidden');
       document.getElementById('tab-tienda').classList.add('hidden');
 
-      document.getElementById('tab-btn-pedidos').className = "flex-1 py-3 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent";
-      document.getElementById('tab-btn-productos').className = "flex-1 py-3 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent";
-      document.getElementById('tab-btn-tienda').className = "flex-1 py-3 text-xs font-bold text-center text-slate-400 border-b-2 border-transparent";
+      document.getElementById('tab-btn-pedidos').className = "flex-1 py-3.5 text-xs sm:text-sm font-bold text-center text-slate-400 border-b-2 border-transparent";
+      document.getElementById('tab-btn-productos').className = "flex-1 py-3.5 text-xs sm:text-sm font-bold text-center text-slate-400 border-b-2 border-transparent";
+      document.getElementById('tab-btn-tienda').className = "flex-1 py-3.5 text-xs sm:text-sm font-bold text-center text-slate-400 border-b-2 border-transparent";
 
       document.getElementById(`tab-${tab}`).classList.remove('hidden');
-      document.getElementById(`tab-btn-${tab}`).className = "flex-1 py-3 text-xs font-bold text-center border-b-2 border-amber-500 text-amber-500";
+      document.getElementById(`tab-btn-${tab}`).className = "flex-1 py-3.5 text-xs sm:text-sm font-bold text-center border-b-2 border-amber-500 text-amber-500";
     }
 
     function renderizarPedidosAdmin() {
       const cont = document.getElementById('lista-pedidos-admin');
       if (pedidos.length === 0) {
-        cont.innerHTML = `<p class="text-xs text-slate-500 text-center py-6">No hay pedidos.</p>`;
+        cont.innerHTML = `<p class="text-sm text-slate-500 text-center py-8">No hay pedidos.</p>`;
         return;
       }
       cont.innerHTML = pedidos.map(ped => {
         const resumenItems = ped.items.map(i => `${i.cantidad}x ${i.nombre}`).join(', ');
         const mensajeDespacho = `Hola ${ped.cliente.nombre}! Ya estamos por despachar tu pedido #${ped.id}. Te enviamos lo que pediste: ${resumenItems}. Aclaraciones: ${ped.notas}. ¿Es lo que pediste?`;
         return `
-          <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 space-y-2 text-xs">
+          <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2.5 text-sm">
             <div class="flex items-center justify-between">
-              <span class="font-black text-amber-400">${ped.id}</span>
-              <span class="text-[10px] text-slate-500">${ped.fecha}</span>
+              <span class="font-black text-amber-400 text-base">${ped.id}</span>
+              <span class="text-xs text-slate-500">${ped.fecha}</span>
             </div>
             <div>
-              <p class="font-extrabold text-slate-200">${ped.cliente.nombre} (${ped.cliente.telefono})</p>
-              <p class="text-slate-400 text-[11px]">📍 ${ped.direccion}</p>
-              <p class="text-slate-400 text-[11px]">💳 ${ped.pago} | 🛵 ${ped.modalidad}</p>
-              <p class="text-amber-200 text-[11px] mt-1">📝 ${ped.notas}</p>
+              <p class="font-extrabold text-slate-100 text-base">${ped.cliente.nombre} (${ped.cliente.telefono})</p>
+              <p class="text-slate-300 text-sm">📍 ${ped.direccion}</p>
+              <p class="text-slate-300 text-sm">💳 ${ped.pago} | 🛵 ${ped.modalidad}</p>
+              <p class="text-amber-200 text-sm mt-1">📝 ${ped.notas}</p>
             </div>
-            <div class="bg-slate-900 p-2 rounded-xl font-mono text-[11px] text-slate-300">${resumenItems}</div>
+            <div class="bg-slate-900 p-2.5 rounded-xl font-mono text-xs text-slate-200">${resumenItems}</div>
             <div class="flex items-center justify-between pt-1">
-              <span class="font-black text-sm text-white">$${ped.total.toLocaleString('es-AR')}</span>
-              <a href="https://wa.me/${ped.cliente.telefono}?text=${encodeURIComponent(mensajeDespacho)}" target="_blank" class="bg-green-600 text-white font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5">
-                <i class="fa-brands fa-whatsapp"></i> Despacho
+              <span class="font-black text-base text-white">$${ped.total.toLocaleString('es-AR')}</span>
+              <a href="https://wa.me/${ped.cliente.telefono}?text=${encodeURIComponent(mensajeDespacho)}" target="_blank" class="bg-green-600 text-white font-bold px-4 py-2 rounded-xl flex items-center gap-2 text-sm shadow">
+                <i class="fa-brands fa-whatsapp text-base"></i> Despacho
               </a>
             </div>
           </div>
@@ -683,7 +690,7 @@
         const reader = new FileReader();
         reader.onload = (e) => {
           fotosSubidasTemp.push(e.target.result);
-          contenedorPreview.innerHTML += `<img src="${e.target.result}" class="w-14 h-14 object-cover rounded-xl border border-slate-700 shrink-0" />`;
+          contenedorPreview.innerHTML += `<img src="${e.target.result}" class="w-16 h-16 object-cover rounded-xl border border-slate-700 shrink-0" />`;
         };
         reader.readAsDataURL(file);
       });
@@ -720,17 +727,17 @@
     function renderizarAdminProductos() {
       const list = document.getElementById('lista-productos-admin');
       list.innerHTML = productos.map(p => `
-        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex items-center justify-between gap-2">
-          <div class="flex items-center gap-2 overflow-hidden">
-            <img src="${p.fotos[0] || ''}" class="w-10 h-10 object-cover rounded-lg shrink-0 bg-slate-900" />
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex items-center justify-between gap-3">
+          <div class="flex items-center gap-3 overflow-hidden">
+            <img src="${p.fotos[0] || ''}" class="w-12 h-12 object-cover rounded-xl shrink-0 bg-slate-900" />
             <div class="min-w-0">
-              <p class="font-extrabold text-xs text-slate-100 truncate">${p.nombre}</p>
-              <p class="text-[10px] text-amber-400 font-bold">$${p.precio}</p>
+              <p class="font-extrabold text-sm text-slate-100 truncate">${p.nombre}</p>
+              <p class="text-xs text-amber-400 font-bold">$${p.precio}</p>
             </div>
           </div>
-          <div class="flex gap-1 shrink-0">
-            <button onclick="prepararEdicionProducto('${p.id}')" class="w-7 h-7 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs"><i class="fa-solid fa-pen"></i></button>
-            <button onclick="borrarProducto('${p.id}')" class="w-7 h-7 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center text-xs"><i class="fa-solid fa-trash"></i></button>
+          <div class="flex gap-2 shrink-0">
+            <button onclick="prepararEdicionProducto('${p.id}')" class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-sm"><i class="fa-solid fa-pen"></i></button>
+            <button onclick="borrarProducto('${p.id}')" class="w-9 h-9 rounded-xl bg-red-500/20 text-red-400 flex items-center justify-center text-sm"><i class="fa-solid fa-trash"></i></button>
           </div>
         </div>
       `).join('');
@@ -747,7 +754,7 @@
       document.getElementById('prod-desc').value = p.desc || '';
       document.getElementById('form-prod-titulo').innerText = "✏️ Editar Producto";
       fotosSubidasTemp = [...p.fotos];
-      document.getElementById('preview-fotos-contenedor').innerHTML = p.fotos.map(f => `<img src="${f}" class="w-14 h-14 object-cover rounded-xl border border-slate-700 shrink-0" />`).join('');
+      document.getElementById('preview-fotos-contenedor').innerHTML = p.fotos.map(f => `<img src="${f}" class="w-16 h-16 object-cover rounded-xl border border-slate-700 shrink-0" />`).join('');
     }
 
     function borrarProducto(id) {
